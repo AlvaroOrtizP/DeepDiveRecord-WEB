@@ -1,27 +1,123 @@
-# DeepDiveRecordWeb
+Estructura del proyecto 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.7.
 
-## Development server
+my-angular-project/
+├── src/
+│   ├── app/
+│   │   ├── core/
+│   │   │   ├── services/
+│   │   │   │   ├── data.service.ts
+│   │   │   ├── core.module.ts
+│   │   ├── shared/
+│   │   │   ├── components/
+│   │   │   │   ├── navbar/
+│   │   │   │   │   ├── navbar.component.css
+│   │   │   │   │   ├── navbar.component.html
+│   │   │   │   │   ├── navbar.component.ts
+│   │   │   │   ├── footer/
+│   │   │   │   │   ├── footer.component.css
+│   │   │   │   │   ├── footer.component.html
+│   │   │   │   │   ├── footer.component.ts
+│   │   │   ├── shared.module.ts
+│   │   ├── features/
+│   │   │   ├── home/
+│   │   │   │   ├── home.component.css
+│   │   │   │   ├── home.component.html
+│   │   │   │   ├── home.component.ts
+│   │   │   │   ├── home.module.ts
+│   │   │   ├── dashboard/
+│   │   │   │   ├── dashboard.component.css
+│   │   │   │   ├── dashboard.component.html
+│   │   │   │   ├── dashboard.component.ts
+│   │   │   │   ├── dashboard.module.ts
+│   │   ├── app-routing.module.ts
+│   │   ├── app.component.css
+│   │   ├── app.component.html
+│   │   ├── app.component.spec.ts
+│   │   ├── app.component.ts
+│   │   ├── app.module.ts
+│   ├── assets/
+│   ├── environments/
+│   ├── index.html
+│   ├── main.ts
+│   ├── styles.css
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+1. core
+El directorio core se utiliza para contener servicios singleton, interceptores, guardias de rutas y cualquier otro código que deba estar disponible en toda la aplicación, pero que no se reutiliza entre componentes o módulos. Este directorio ayuda a mantener el código centralizado y modularizado.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Servicios Singleton: Son servicios que se instancian una sola vez en toda la aplicación y se utilizan para manejar la lógica central, como la autenticación, la configuración de la aplicación, etc.
+Ejemplo: auth.service.ts que maneja la autenticación de usuarios.
+core/core.module.ts
+ts
+Copiar código
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+// Importar servicios aquí si es necesario
 
-## Running unit tests
+@NgModule({
+  declarations: [],
+  imports: [
+    CommonModule
+  ],
+  providers: [
+    // Proveer servicios aquí si es necesario
+  ]
+})
+export class CoreModule { }
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+2. shared
+El directorio shared contiene componentes, directivas, pipes y servicios que son reutilizables en diferentes partes de la aplicación. Estos elementos son de uso común y no dependen de una vista específica.
 
-## Running end-to-end tests
+Componentes Compartidos: Componentes que se utilizan en múltiples vistas, como navbar y footer.
+Directivas y Pipes: Directivas y pipes que se reutilizan en diferentes componentes.
+Ejemplo: navbar.component.ts y footer.component.ts.
+shared/shared.module.ts
+ts
+Copiar código
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+@NgModule({
+  declarations: [
+    NavbarComponent,
+    FooterComponent
+  ],
+  imports: [
+    CommonModule
+  ],
+  exports: [
+    NavbarComponent,
+    FooterComponent
+  ]
+})
+export class SharedModule { }
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+3. features
+El directorio features contiene los módulos específicos de cada funcionalidad principal de la aplicación. Cada módulo puede tener sus propios componentes, servicios y otros archivos relacionados.
+
+Módulos de Funcionalidad: Agrupan componentes, servicios, y otros recursos relacionados con una funcionalidad específica.
+Ejemplo: home y dashboard como módulos que contienen los componentes y la lógica específica para esas vistas.
+features/home/home.module.ts
+ts
+Copiar código
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HomeComponent } from './home.component';
+import { RouterModule } from '@angular/router';
+
+@NgModule({
+  declarations: [HomeComponent],
+  imports: [
+    CommonModule,
+    RouterModule.forChild([
+      { path: '', component: HomeComponent }
+    ])
+  ]
+})
+export class HomeModule { }
