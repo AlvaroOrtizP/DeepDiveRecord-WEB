@@ -10,8 +10,7 @@ import { NavbarComponent } from "../../shared/components/navbar/navbar.component
     imports: [FooterComponent, NavbarComponent]
 })
 export class HomeComponent {
-
-
+  
   loadData() {
     alert("Cargar datos")
   }
