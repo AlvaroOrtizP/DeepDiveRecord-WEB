@@ -1,0 +1,36 @@
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  footer .btn-outline-light {
+    border-color: #fff;
+    color: #fff;
+  }
+  
+  footer .btn-outline-light:hover {
+    background-color: #fff;
+    color: #000;
+  }
+  
+  footer .bg-dark {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+  }
+  
+  footer .text-center {
+    text-align: center !important;
+  }
+  
+  footer .text-white {
+    color: #fff !important;
+  }
+  
+  footer .p-4 {
+    padding: 1.5rem !important;
+  }
+  
+  footer .pb-0 {
+    padding-bottom: 0 !important;
+  }
+  

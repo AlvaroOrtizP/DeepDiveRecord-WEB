@@ -1,32 +1,10 @@
-/* Carousel styling */
-#introCarousel,
-.carousel-inner,
-.carousel-item,
-.carousel-item.active {
+.principal{
+  background-image: url('../../../assets/img/sea.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
   height: 100vh;
 }
-
-.carousel-item:nth-child(1) {
-  background-image: url('../../../assets/img/faro_del_caballo_cantabria.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-}
-
-.carousel-item:nth-child(2) {
-  background-image: url('../../../assets/img/Playa_del_Silencio_O_Gaviero.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-}
-
-.carousel-item:nth-child(3) {
-  background-image: url('../../../assets/img/Cabo_Vilan_galicia.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-}
-
 .mask {
   display: flex;
   justify-content: center;
@@ -38,3 +16,4 @@
 .text-white {
   color: #fff !important;
 }
+
