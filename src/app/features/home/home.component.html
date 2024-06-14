@@ -1,17 +1,35 @@
-<div class="principal"> 
+<div class="principal">
   <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
     <div class="d-flex justify-content-center align-items-center h-100">
       <div class="text-white text-center">
         <h1 class="mb-3">Deep Dive Record</h1>
-        <h5 class="mb-4">Tu web de consulta y seguimiento maritimo</h5>
-        <a class="btn btn-outline-light btn-lg m-2" href="" role="button"
-          rel="nofollow" target="_blank">Registrar datos de pesca</a>
-        <a class="btn btn-outline-light btn-lg m-2" href="" target="_blank"
-          role="button">Carga de datos</a>
-        <a class="btn btn-outline-light btn-lg m-2" href="" target="_blank"
-          role="button">Ver datos de la semana</a>
+        <h5 class="mb-4">Tu web de consulta y seguimiento marítimo</h5>
+        <a class="btn btn-outline-light btn-lg m-2" href="" role="button" rel="nofollow" target="_blank">Registrar datos de pesca</a>
+        <button (click)="cargarDatos()" class="btn btn-outline-light btn-lg m-2" role="button">Carga de datos</button>
+        <a class="btn btn-outline-light btn-lg m-2" href="" target="_blank" role="button">Ver datos de la semana</a>
+        
+        @if (data !== undefined) {
+          @if (comprobante ) {
+            <h2>Respuesta exitosa:</h2>
+            <p>Datos cargados correctamente</p>
+          }@else{
+            <h2>Errores:</h2>
+          }
+        } 
+        
+        <!--
+        @else {
+          The user is not logged in
+      }
+        <ng-container *ngIf="data !== undefined">
+          <ng-container *ngIf="comprobante; else errorTemplate">
+           
+          </ng-container>
+          <ng-template #errorTemplate>
+            
+          </ng-template>
+        </ng-container>-->
       </div>
     </div>
   </div>
 </div>
-
