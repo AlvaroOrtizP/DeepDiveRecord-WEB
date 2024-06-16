@@ -6,9 +6,10 @@
         <h5 class="mb-4">Tu web de consulta y seguimiento marítimo</h5>
         <a class="btn btn-outline-light btn-lg m-2" href="" role="button" rel="nofollow" target="_blank">Registrar datos de pesca</a>
         <button (click)="cargarDatos()" class="btn btn-outline-light btn-lg m-2" role="button">Carga de datos</button>
-        <a class="btn btn-outline-light btn-lg m-2" href="" target="_blank" role="button">Ver datos de la semana</a>
+        <button (click)="verDatosSemana()" class="btn btn-outline-light btn-lg m-2" role="button">Ver datos de la semana</button>
+
         
-        @if (data !== undefined) {
+        @if (ejecucionCargarDatos) {
           @if (comprobante ) {
             <h2>Respuesta exitosa:</h2>
             <p>Datos cargados correctamente</p>
@@ -16,19 +17,6 @@
             <h2>Errores:</h2>
           }
         } 
-        
-        <!--
-        @else {
-          The user is not logged in
-      }
-        <ng-container *ngIf="data !== undefined">
-          <ng-container *ngIf="comprobante; else errorTemplate">
-           
-          </ng-container>
-          <ng-template #errorTemplate>
-            
-          </ng-template>
-        </ng-container>-->
       </div>
     </div>
   </div>
