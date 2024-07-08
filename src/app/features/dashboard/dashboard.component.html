@@ -1,17 +1,70 @@
-<app-navbar></app-navbar>
-<div>
-  <button (click)="insertFishingData()">Insertar Datos de Pesca</button>
-  <table>
-    <tr>
-      <th>Fecha</th>
-      <th>Temperatura</th>
-      <th>Humedad</th>
-    </tr>
-    <tr >
-      <td>Algoi1</td>
-      <td>Algoi12</td>
-      <td>Algoi13</td>
-    </tr>
-  </table>
+<div class="principal">
+  <div class="mask">
+    <div class="d-flex justify-content-center align-items-center h-100">
+      <div class="container">
+        <h1 class="mt-5">Datos de la Semana</h1>
+        <table class="table table-striped table-dark mt-3">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              @for (item of dataList; track $index) {
+              <th scope="col">{{ item.day }}<br>{{ item.timeOfDay }}H</th>
+              }
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Velocidad Viento</td>
+              @for (item of dataList; track $index) {
+              <td>{{ item.wind }}</td>
+              }
+            </tr>
+            <tr>
+              <td>Rachas (nudos)</td>
+              @for (item of dataList; track $index) {
+              <td>{{ item.gustsOfWind }}</td>
+              }
+            </tr>
+            <tr>
+              <td>Direccion del viento</td>
+
+              @for (item of dataList; track $index) {
+              <td class="arrow">
+                <img [style.transform]="'rotate(119 deg)'" src="assets/img/arrow-right-solid.svg"
+                  alt="Arrow" />
+              </td>
+              }
+              <!-- {{item.windDirection}-->
+
+            </tr>
+            <tr>
+              <td>Altura de ola</td>
+              @for (item of dataList; track $index) {
+              <td>{{ item.waveHeight }}</td>
+              }
+            </tr>
+
+            <tr>
+              <td>Periodo</td>
+              @for (item of dataList; track $index) {
+              <td>{{ item.wavePeriod }}</td>
+              }
+            </tr>
+            <tr>
+              <td>Temperatura en tierra</td>
+              @for (item of dataList; track $index) {
+              <td>{{ item.earthTemperature }}</td>
+              }
+            </tr>
+            <tr>
+              <td>Temperatura en agua</td>
+              @for (item of dataList; track $index) {
+              <td>{{ item.waterTtermperature }}</td>
+              }
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
-<app-footer></app-footer>

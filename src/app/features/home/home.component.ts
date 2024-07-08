@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { InDeepDiveLogger } from '../../core/models/deepdive/request/InDeepDiveLogger';
 import { DeepdiveService } from '../../core/services/deepdive.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ export class HomeComponent {
   data: any; // Variable para almacenar los datos recibidos
   comprobante: boolean = false; // Variable para controlar la muestra de éxito
 
-  constructor(private deepdiveService: DeepdiveService) { }
+  constructor(private deepdiveService: DeepdiveService, private router: Router) { }
 
   cargarDatos() {
     const logger: InDeepDiveLogger = new InDeepDiveLogger(
@@ -21,7 +22,8 @@ export class HomeComponent {
       "Ajo, Cantabria"
     );
 
-    this.deepdiveService.cargarDatos(logger).subscribe({
+    alert("Se ha eliminado esta parte")
+    /*this.deepdiveService.cargarDatos(logger).subscribe({
       next: (response: any) => {
         console.log("Entra 1")
         this.comprobante = true; // Puedes establecer esto directamente si llega la respuesta
@@ -32,6 +34,12 @@ export class HomeComponent {
         this.comprobante = false; // No se ha cargado correctamente
         this.data = undefined; // Reinicia los datos en caso de error
       }
-    });
+    });*/
+  }
+  registrarDatosPesca(){
+    alert("En proceso")
+  }
+  verDatosSemana(){
+    this.router.navigate(['/dashboard']);
   }
 }
