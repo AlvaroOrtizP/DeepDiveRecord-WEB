@@ -23,7 +23,8 @@ export class HomeComponent {
       "Ajo, Cantabria"
     );
 
-    this.deepdiveService.cargarDatos(logger).subscribe({
+    alert("Se ha eliminado esta parte")
+    /*this.deepdiveService.cargarDatos(logger).subscribe({
       next: (response: any) => {
         this.ejecucionCargarDatos = true;
         console.log("Entra 1")
@@ -36,7 +37,13 @@ export class HomeComponent {
         this.comprobante = false;
         this.data = undefined;
       }
-    });
+    });*/
+  }
+  registrarDatosPesca(){
+    alert("En proceso")
+  }
+  verDatosSemana(){
+    this.router.navigate(['/dashboard']);
   }
 
   verDatosSemana() {

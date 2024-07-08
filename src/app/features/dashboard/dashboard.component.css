@@ -1,0 +1,45 @@
+ 
+  .principal {
+    background-image: url('../../../assets/img/sea.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 100vh;
+  }
+  .mask {
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+  }
+  .text-white {
+    color: #fff !important;
+  }
+  .container h1 {
+    color: #fff;
+  }
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  .table-striped tbody tr:nth-of-type(even) {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+  .table thead th {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .arrow-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrow img {
+    width: 40px; /* Ajusta el tamaño del SVG según sea necesario */
+    height: auto;
+}
+
+  
