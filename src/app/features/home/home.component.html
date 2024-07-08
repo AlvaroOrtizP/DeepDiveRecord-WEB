@@ -10,7 +10,7 @@
         <button (click)="verDatosSemana()" class="btn btn-outline-light btn-lg m-2" role="button">Ver datos de la semana</button>
 
         
-        @if (data !== undefined) {
+        @if (ejecucionCargarDatos) {
           @if (comprobante ) {
             <h2>Respuesta exitosa:</h2>
             <p>Datos cargados correctamente</p>
@@ -18,19 +18,6 @@
             <h2>Errores:</h2>
           }
         } 
-        
-        <!--
-        @else {
-          The user is not logged in
-      }
-        <ng-container *ngIf="data !== undefined">
-          <ng-container *ngIf="comprobante; else errorTemplate">
-           
-          </ng-container>
-          <ng-template #errorTemplate>
-            
-          </ng-template>
-        </ng-container>-->
       </div>
     </div>
   </div>

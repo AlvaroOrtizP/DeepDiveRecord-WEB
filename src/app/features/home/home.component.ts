@@ -12,6 +12,7 @@ export class HomeComponent {
 
   data: any; // Variable para almacenar los datos recibidos
   comprobante: boolean = false; // Variable para controlar la muestra de éxito
+  ejecucionCargarDatos: boolean = false;
 
   constructor(private deepdiveService: DeepdiveService, private router: Router) { }
 
@@ -25,14 +26,16 @@ export class HomeComponent {
     alert("Se ha eliminado esta parte")
     /*this.deepdiveService.cargarDatos(logger).subscribe({
       next: (response: any) => {
+        this.ejecucionCargarDatos = true;
         console.log("Entra 1")
-        this.comprobante = true; // Puedes establecer esto directamente si llega la respuesta
-        this.data = response; // Guarda los datos recibidos para mostrarlos en la plantilla
+        this.comprobante = true;
+        this.data = response;
       },
       error: (error) => {
+        this.ejecucionCargarDatos = true;
         console.error('Error al cargar los datos:', error);
-        this.comprobante = false; // No se ha cargado correctamente
-        this.data = undefined; // Reinicia los datos en caso de error
+        this.comprobante = false;
+        this.data = undefined;
       }
     });*/
   }
@@ -41,5 +44,9 @@ export class HomeComponent {
   }
   verDatosSemana(){
     this.router.navigate(['/dashboard']);
+  }
+
+  verDatosSemana() {
+    this.router.navigate(['/dashboard'], {});
   }
 }
