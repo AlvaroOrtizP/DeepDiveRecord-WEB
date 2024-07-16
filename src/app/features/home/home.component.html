@@ -5,19 +5,9 @@
         <h1 class="mb-3">Deep Dive Record</h1>
         <h5 class="mb-4">Tu web de consulta y seguimiento marítimo</h5>
 
-        <button (click)="registrarDatosPesca()" class="btn btn-outline-light btn-lg m-2" role="button">Registrar datos de pesca</button>
-        <button (click)="cargarDatos()" class="btn btn-outline-light btn-lg m-2" role="button">Carga de datos</button>
+        <button (click)="registrarDatosPesca()" class="btn btn-outline-light btn-lg m-2" role="button">Registrar día de buceo</button>
         <button (click)="verDatosSemana()" class="btn btn-outline-light btn-lg m-2" role="button">Ver datos de la semana</button>
-
         
-        @if (ejecucionCargarDatos) {
-          @if (comprobante ) {
-            <h2>Respuesta exitosa:</h2>
-            <p>Datos cargados correctamente</p>
-          }@else{
-            <h2>Errores:</h2>
-          }
-        } 
       </div>
     </div>
   </div>

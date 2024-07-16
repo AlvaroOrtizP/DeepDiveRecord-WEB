@@ -16,7 +16,7 @@ export class HomeComponent {
 
   constructor(private deepdiveService: DeepdiveService, private router: Router) { }
 
-  cargarDatos() {
+  /*cargarDatos() {
     const logger: InDeepDiveLogger = new InDeepDiveLogger(
       "487006",
       "play_v2_3900602",
@@ -24,7 +24,7 @@ export class HomeComponent {
     );
 
     alert("Se ha eliminado esta parte")
-    /*this.deepdiveService.cargarDatos(logger).subscribe({
+    this.deepdiveService.cargarDatos(logger).subscribe({
       next: (response: any) => {
         this.ejecucionCargarDatos = true;
         console.log("Entra 1")
@@ -37,16 +37,13 @@ export class HomeComponent {
         this.comprobante = false;
         this.data = undefined;
       }
-    });*/
-  }
+    });
+  }*/
   registrarDatosPesca(){
-    alert("En proceso")
+    this.router.navigate(['/formDiveDay']);
   }
   verDatosSemana(){
     this.router.navigate(['/dashboard']);
   }
 
-  verDatosSemana() {
-    this.router.navigate(['/dashboard'], {});
-  }
 }
