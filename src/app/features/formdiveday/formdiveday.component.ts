@@ -54,7 +54,7 @@ export class FormDiveDayComponent {
       //Comprobar si fue OK la creaccion del dia de buceo
 
       //En caso OK redirigir a la pantalla de datos del dia de buceo
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/dive-day']);
     } else {
       console.log('Formulario inválido');
     }
