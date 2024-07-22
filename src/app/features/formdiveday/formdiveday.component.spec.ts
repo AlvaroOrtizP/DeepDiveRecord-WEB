@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormdivedayComponent } from './formdiveday.component';
+import { FormDiveDayComponent } from './formdiveday.component';
 
 describe('FormdivedayComponent', () => {
-  let component: FormdivedayComponent;
-  let fixture: ComponentFixture<FormdivedayComponent>;
+  let component: FormDiveDayComponent;
+  let fixture: ComponentFixture<FormDiveDayComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormdivedayComponent]
+      imports: [FormDiveDayComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(FormdivedayComponent);
+    fixture = TestBed.createComponent(FormDiveDayComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,15 +1,102 @@
 .principal {
-    background-image: url('../../../assets/img/sea.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    height: 100vh;
-  }
-  .mask {
-    background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-  }
+  background-image: url('../../../assets/img/sea.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  height: 150vh;
+  overflow-y: auto;
+}
+
+.mask {
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column; /* Alinea los elementos en una columna */
+  justify-content: flex-start; /* Alinea el contenido al inicio (parte superior) */
+  align-items: center; /* Centra horizontalmente */
+  min-height: 100%; /* Asegura que la máscara ocupe al menos toda la altura de la ventana */
+  text-align: center;
+  padding: 20px; /* Añade un poco de relleno si es necesario */
+}
+
+.container {
+  margin-top: 20px; /* Ajusta según el espacio necesario */
+}
+
+
+h2{
+  margin-top: 1px;
+  color: white;
+}
+h4{
+  margin-top: 1px;
+  color: white;
+}
+
+
+/* Estilos personalizados para el componente */
+
+.card {
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.card-title {
+  font-size: 1.5rem;
+  color: #0d6efd;
+}
+
+.list-group-item {
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.list-group-item:last-child {
+  margin-bottom: 0;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-success {
+  background-color: #198754;
+  border-color: #198754;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+.moon{
+  width: 50px;
+  height: 50px;
+}
+
+
+.mareas {
+  width: 130%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  background-color: white;
+}
+th, td {
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
+}
+
+
+
