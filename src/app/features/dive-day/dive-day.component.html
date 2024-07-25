@@ -103,80 +103,12 @@
                                         <th></th>
                                         <th>00 - 12H</th>
                                         <th>12 - 24H</th>
-                                        <th>Astros / Condiciones climáticas</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>Coeficiente</strong></td>
-                                        <td>{{diveDayResponse?.tideTableResponse?.coefficient0H}}</td>
-                                        <td>{{diveDayResponse?.tideTableResponse?.coefficient12H}}</td>
-                                        <td>
-                                            @switch (diveDayResponse?.tideTableResponse?.moonPhase) {
-                                            @case (1) {
-                                            <img class="moon" src="../../../assets/img/moon/FULL_MOON.png"
-                                                alt="Luna llena" />
-                                            }
-                                            @case (2) {
-                                            <img class="moon" src="../../../assets/img/moon/NEW_MOON.png"
-                                                alt="Luna nueva" />
-                                            }
-                                            @case (3) {
-                                            <img class="moon" src="../../../assets/img/moon/CRESCENT_MOON.png"
-                                                alt="Luna creciente" />
-                                            }
-                                            @case (4) {
-                                            <div>Cuarto menguante</div>
-                                            <img class="moon" src="../../../assets/img/moon/WANING_MOON.png"
-                                                alt="Luna menguante" />
-                                            }
-                                            }
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Marea Alta</strong></td>
-                                        <td>{{diveDayResponse?.tideTableResponse?.morningHighTideTime}}</td>
-                                        <td>{{diveDayResponse?.tideTableResponse?.afternoonHighTideTime}}</td>
-                                        <td rowspan="2"><img class="moon"
-                                                src="../../../assets/img/moon/CRESCENT_MOON.png" alt="Marea Alta" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Altura (Marea Alta)</strong></td>
-                                        <td>{{diveDayResponse?.tideTableResponse?.morningHighTideHeight}}</td>
-                                        <td>{{diveDayResponse?.tideTableResponse?.afternoonHighTideHeight}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Marea Baja</strong></td>
-                                        <td>{{diveDayResponse?.tideTableResponse?.morningLowTideTime}}</td>
-                                        <td>{{diveDayResponse?.tideTableResponse?.afternoonLowTideTime}}</td>
-                                        <td rowspan="2"><img class="moon"
-                                                src="../../../assets/img/moon/CRESCENT_MOON.png" alt="Marea Baja" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Altura (Marea Baja)</strong></td>
-                                        <td>{{diveDayResponse?.tideTableResponse?.morningLowTideHeight}}</td>
-                                        <td>{{diveDayResponse?.tideTableResponse?.afternoonLowTideHeight}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </section>
-                    <section class="col-md-6">
-                        <div class="mb-4">
-                            <h4>Condiciones climáticas</h4>
-                        </div>
-                        <div>
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>00 - 12H</th>
-                                        <th>12 - 24H</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
+                                        <td><strong>Condicion climatica</strong></td>
                                         <td>
                                             @switch (conditionAmanecer) {
                                             @case ("despejado") {
@@ -220,14 +152,86 @@
                                             }
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td><strong>Coeficiente</strong></td>
+                                        <td>{{diveDayResponse?.tideTableResponse?.coefficient0H}}</td>
+                                        <td>{{diveDayResponse?.tideTableResponse?.coefficient12H}}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Marea Alta</strong></td>
+                                        <td>{{diveDayResponse?.tideTableResponse?.morningHighTideTime}}</td>
+                                        <td>{{diveDayResponse?.tideTableResponse?.afternoonHighTideTime}}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Altura (Marea Alta)</strong></td>
+                                        <td>{{diveDayResponse?.tideTableResponse?.morningHighTideHeight}}</td>
+                                        <td>{{diveDayResponse?.tideTableResponse?.afternoonHighTideHeight}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Marea Baja</strong></td>
+                                        <td>{{diveDayResponse?.tideTableResponse?.morningLowTideTime}}</td>
+                                        <td>{{diveDayResponse?.tideTableResponse?.afternoonLowTideTime}}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Altura (Marea Baja)</strong></td>
+                                        <td>{{diveDayResponse?.tideTableResponse?.morningLowTideHeight}}</td>
+                                        <td>{{diveDayResponse?.tideTableResponse?.afternoonLowTideHeight}}</td>
+                                    </tr>
                                 </tbody>
                             </table>
-                            prueba
+                        </div>
+                    </section>
+                    <section class="col-md-6">
+                        <div class="mb-4">
+                            <h4>Condiciones climáticas</h4>
+                        </div>
+                        <div>
+
+                            @switch (diveDayResponse?.tideTableResponse?.moonPhase) {
+                            @case (1) {
+                            <img class="moon" src="../../../assets/img/moon/FULL_MOON.png" alt="Luna llena" />
+                            }
+                            @case (2) {
+                            <img class="moon" src="../../../assets/img/moon/NEW_MOON.png" alt="Luna nueva" />
+                            }
+                            @case (3) {
+                            <img class="moon" src="../../../assets/img/moon/CRESCENT_MOON.png" alt="Luna creciente" />
+                            }
+                            @case (4) {
+                            <div>Cuarto menguante</div>
+                            <img class="moon" src="../../../assets/img/moon/WANING_MOON.png" alt="Luna menguante" />
+                            }
+                            }
+
                         </div>
                     </section>
                 </div>
             </div>
-           
+            <section>
+                <button class="btn btn-success mt-3" (click)="activarMarcas()">Marcas</button>
+            </section>
+            <!--ZONA MAPA-->
+            <section>
+                <div class="image-container">
+                    <img class="img_lugar" [src]="'../../../assets/img/lugares/Isla/' + diveDayResponse?.geographicalLocationResponse?.site + '.jpg'"  alt="Marea Baja" width="1000" height="600" />
+                    <!-- Agregar marcas -->
+                     @if(marcasActivas){
+                        @for (fishing of diveDayResponse?.fishinglist; track $index) {
+                            @if(fishing.geographicalLocationResponse.site == diveDayResponse?.geographicalLocationResponse?.site){
+                                <div class="marker"  [style.top.%]="fishing.lat" 
+                                [style.left.%]="fishing.long"  title="Zona de peces 1"> <span>{{$index + 1}}</span></div>
+                            }
+                           
+                        }
+                     }
+                </div>
+            </section>
+            
+            
+
             <div class="row">
                 <div class="col-md-12">
                     <h4>Pesca del Día</h4>
@@ -243,7 +247,7 @@
                                 <small>Peso: {{fishing.weight}}</small>
                             </div>
                             <div>
-                                <button class="btn btn-primary me-2" (click)="verPez()">Ver</button>
+                                <button class="btn btn-primary me-2" (click)="verPez(fishing.id)">Ver</button>
                                 <button class="btn btn-warning me-2" (click)="modificarPez()">Modificar</button>
                                 <button class="btn btn-danger" (click)="eliminarPez()">Eliminar</button>
                             </div>

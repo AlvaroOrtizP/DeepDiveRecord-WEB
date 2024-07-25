@@ -18,12 +18,28 @@
       <div class="row">
         <div class="half">
           <label for="site">Site</label>
-          <input id="site" formControlName="site" type="text">
+          <select id="site" formControlName="site">
+            @for (site of uniqueSites; track $index) {
+              <option [value]="site">{{ site }}</option>
+            }
+          </select>
         </div>
         <div class="half">
-          <label for="notes">Notes</label>
-          <input id="notes" formControlName="notes" type="text">
+          <label for="name">Name</label>
+          <select id="name" formControlName="name">
+            @for (name of filteredNames; track $index) {
+              <option [value]="name">{{ name }}</option>
+            }
+          </select>
         </div>
+        <div class="half">
+          <label for="valoracion">Valoracion</label>
+          <input id="valoracion" formControlName="valoracion" type="text">
+        </div>
+      </div>
+      <div class="row">
+        <label for="notes">Notes</label>
+        <input id="notes" formControlName="notes" type="text">
       </div>
       <button type="submit">Submit</button>
     </form>

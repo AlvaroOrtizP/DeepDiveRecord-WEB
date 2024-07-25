@@ -1,0 +1,31 @@
+<div class="principal">
+  <div class="mask">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="third">
+          <label for="date">Date</label>
+          <input id="date" formControlName="date" type="date">
+        </div>
+        <div class="third">
+          <label for="beginning">Beginning</label>
+          <input id="beginning" formControlName="beginning" type="text">
+        </div>
+        <div class="third">
+          <label for="end">End</label>
+          <input id="end" formControlName="end" type="text">
+        </div>
+      </div>
+      <div class="row">
+        <div class="half">
+          <label for="site">Site</label>
+          <input id="site" formControlName="site" type="text">
+        </div>
+      </div>
+      <div class="row">
+        <label for="notes">Notes</label>
+        <input id="notes" formControlName="notes" type="text">
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>

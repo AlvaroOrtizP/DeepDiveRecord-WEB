@@ -100,3 +100,23 @@ th, td {
 
 
 
+/*MAPA*/
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.img_lugar {
+  width: 100%;
+  height: auto;
+}
+
+.marker {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+}
