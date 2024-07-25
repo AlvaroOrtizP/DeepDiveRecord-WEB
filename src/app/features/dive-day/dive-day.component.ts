@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DiveDayResponse, Fish, Fishing, GeographicalLocationResponse, TideTableResponse, WindCondition } from '../../core/models/deepdive/response/DiveDayResponse';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dive-day',
@@ -14,8 +15,11 @@ export class DiveDayComponent {
   diveDayResponse: DiveDayResponse | undefined;
   conditionAmanecer: String | undefined;
   conditionAtardecer: String | undefined;
-  constructor() {}
+  marcasActivas: boolean = true;
+  
+  constructor(private router: Router) {}
   ngOnInit() {
+    this.marcasActivas = true;
     this.conditionAmanecer = "despejado";
     this.conditionAtardecer = "chubascos"
     this.diveDayResponse = new DiveDayResponse(
@@ -30,8 +34,8 @@ export class DiveDayComponent {
       'Agua clara, visibilidad de 15 metros, temperatura del agua 22°C, corriente leve', // notes -- 
       new GeographicalLocationResponse(
         1,
-        'Acantilado de Sal',
         'Isla',
+        'Acantilado_Isla_Oeste',
       ),
       new TideTableResponse(
         15, // day No es necesario mostrar
@@ -259,7 +263,14 @@ export class DiveDayComponent {
           ),
           'Caught near the coral',
           true,
-          0.5
+          0.5,
+          40,
+          55,
+          new GeographicalLocationResponse(
+            1,
+            'Isla',
+            'Acantilado_Isla_Oeste',
+          )
         ),
         new Fishing(
           2,
@@ -275,7 +286,14 @@ export class DiveDayComponent {
           ),
           'Caught near the reef',
           true,
-          1.2
+          1.2,
+          50,
+          52,
+          new GeographicalLocationResponse(
+            1,
+            'Isla',
+            'Acantilado_Isla_Oeste',
+          )
         ),
         new Fishing(
           3,
@@ -291,25 +309,34 @@ export class DiveDayComponent {
           ),
           'Caught in deeper water',
           true,
-          2.0
+          2.0,
+          40,
+          52,
+          new GeographicalLocationResponse(
+            1,
+            'Isla',
+            'Acantilado_Isla_Oeste',
+          )
         )
       ]
     );
 
   }
 
-
+  activarMarcas(){
+    this.marcasActivas = !this.marcasActivas;
+  }
   modificarPez(){
     alert("Modificar")
   }
   eliminarPez(){
     alert("Eliminar")
   }
-  verPez(){
-    alert("ver")
+  verPez(id: number) {
+    this.router.navigate(['/fish-facts', id]);
   }
   anadirPez(){
-    alert("anadirPez")
+    this.router.navigate(['/fish-form']);
   }
   modificarDiaBuceo(){
     alert("modificarDiaBuceo")

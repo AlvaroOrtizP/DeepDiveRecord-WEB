@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { InDeepDiveLogger } from '../../core/models/deepdive/request/InDeepDiveLogger';
-import { DeepdiveService } from '../../core/services/deepdive.service';
 import { Router } from '@angular/router';
+import { DeepdiveService } from '../../core/services/deepdive.service';
 
 @Component({
   selector: 'app-home',

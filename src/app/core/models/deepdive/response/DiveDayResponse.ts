@@ -66,7 +66,7 @@ export class WindCondition {
         public waveDirection: string,
         public waveDirectionNM: string,
         public earthTemperature: number,
-        public waterTtermperature: string,
+        public waterTermperature: string,
         public conditionCode: number,
         public conditionDescription: string,
     ) {}
@@ -79,6 +79,10 @@ export class Fishing {
         public notes: string,
         public caught: boolean,
         public weight: number,
+        //Mapa grande
+        public lat: number, //Norte - Sur
+        public long: number, //Este - Oeste
+        public geographicalLocationResponse: GeographicalLocationResponse,    
     ) {}
 }
 export class Fish {

@@ -1,0 +1,54 @@
+<div class="principal">
+    <div class="mask">
+        <div class="container my-5">
+            <h1 class="mb-4">Fishing Details</h1>
+            <div class="row">
+                <!-- Fishing Info -->
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="card-title">Fishing Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Fishing ID:</strong> {{ fishing?.id }}</p>
+                            <p><strong>Notes:</strong> {{ fishing?.notes }}</p>
+                            <p><strong>Caught:</strong> {{ fishing?.caught ? 'Yes' : 'No' }}</p>
+                            <p><strong>Weight:</strong> {{ fishing?.weight }} kg</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fish Info -->
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="card-title">Fish Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Fish ID:</strong> {{ fishing?.fish?.id }}</p>
+                            <p><strong>Name:</strong> {{ fishing?.fish?.name }}</p>
+                            <p><strong>Site:</strong> {{ fishing?.fish?.site }}</p>
+                            <p><strong>First Sighting:</strong> {{ fishing?.fish?.firstSighting }}</p>
+                            <p><strong>Last Sighting:</strong> {{ fishing?.fish?.firstLast }}</p>
+                            <p><strong>Start Season:</strong> {{ fishing?.fish?.startSeason }}</p>
+                            <p><strong>End Season:</strong> {{ fishing?.fish?.endSeason }}</p>
+                            <p><strong>First Life Warning:</strong> {{ fishing?.fish?.firstLifeWarning }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--ZONA MAPA-->
+        <section>
+            <div class="image-container">
+                <img class="img_lugar" [src]="'../../../assets/img/lugares/Isla/' + fishing?.geographicalLocationResponse?.site + '.jpg'"  alt="Marea Baja" width="1000" height="600" />
+                <!-- Agregar marcas -->
+                 @if(marcasActivas){
+                        <div class="marker"  [style.top.%]="fishing?.lat" 
+                        [style.left.%]="fishing?.log"  title="Zona de peces 1"></div>
+                 }
+            </div>
+        </section>
+
+    </div>
+</div>

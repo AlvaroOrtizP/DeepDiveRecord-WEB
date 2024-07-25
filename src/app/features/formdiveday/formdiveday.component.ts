@@ -1,8 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray, ReactiveFormsModule } from '@angular/forms';
 import { InCreateDailyDiving } from '../../core/models/deepdive/request/InCreateDailyDiving';
 import { InFishing } from '../../core/models/deepdive/request/InFishing';
 import { Router } from '@angular/router';
+import { DivedayService } from '../../core/services/diveday/diveday.service';
+import { DiveDayResponse } from '../../core/models/deepdive/response/DiveDayResponse';
+import { GeograficlocationService } from '../../core/services/geograficlocation/geograficlocation.service';
+import { GeograficLocationResponse } from '../../core/models/deepdive/response/GeograficLocationResponse';
 
 @Component({
   selector: 'app-formdiveday',
@@ -11,52 +15,116 @@ import { Router } from '@angular/router';
   templateUrl: './formdiveday.component.html',
   styleUrls: ['./formdiveday.component.css']
 })
-export class FormDiveDayComponent {
+export class FormDiveDayComponent implements OnInit {
   form: FormGroup;
+  dataList: GeograficLocationResponse[] = [];
+  uniqueSites: string[] = [];
+  filteredNames: string[] = [];
+  data!: DiveDayResponse;
+  idGeograficLocation: number =0;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private geograficlocationService: GeograficlocationService, 
+    private fb: FormBuilder, 
+    private router: Router, 
+    private divedayService: DivedayService
+  ) {
     this.form = this.fb.group({
       date: ['', Validators.required],
       beginning: ['', Validators.required],
       end: ['', Validators.required],
       site: ['', Validators.required],
+      name: ['', Validators.required], 
+      valoracion: ['', Validators.required],
       notes: [''],
       fishingList: this.fb.array([]) // Inicializa un FormArray vacío para la lista de pesca
+    });
+  }
+
+  ngOnInit(): void {
+    console.log('Se procede a obtener los datos de geolocalizacion');
+    this.cargarDatosGeolocalizacion();
+    this.form.get('site')?.valueChanges.subscribe(site => {
+      this.filterNamesBySite(site);
+    });
+    this.form.get('name')?.valueChanges.subscribe(name => {
+      this.logIdByName(name);
     });
   }
 
   onSubmit() {
     if (this.form.valid) {
       // Obtener los valores del formulario
-      const { date, beginning, end, site, notes } = this.form.value;
-
+      const { date, beginning, end, site, name, notes, valoracion } = this.form.value;
       // Convertir el valor de la fecha a un objeto Date
       const dateObj = new Date(date);
-
+  
       // Extraer día, mes y año
-      const day = dateObj.getDate(); //obtiene el dia
-      const month = dateObj.getMonth() + 1 ; // getMonth() devuelve el mes de 0 a 11, por eso se suma 1
-      const year = dateObj.getFullYear(); //Obtiene el año
-
+      const day = dateObj.getDate(); // obtiene el día
+      const month = dateObj.getMonth() + 1; // getMonth() devuelve el mes de 0 a 11, por eso se suma 1
+      const year = dateObj.getFullYear(); // obtiene el año
+  
       // Crear un nuevo objeto InCreateDailyDiving
       const newDivingDay = new InCreateDailyDiving(
-        day+ "",
+        day + "",
+        month + "", 
+        year + "",
         beginning,
         end,
         site,
+        name, 
         notes,
-        year+ "",
-        month + "",
+        valoracion,
+        this.idGeograficLocation,
       );
-
+  
       console.log('Nuevo día de buceo:', newDivingDay);
-      //enviar datos a la api
-      //Comprobar si fue OK la creaccion del dia de buceo
-
-      //En caso OK redirigir a la pantalla de datos del dia de buceo
-      this.router.navigate(['/dive-day']);
+      /*this.divedayService.createDailyDiving(newDivingDay).subscribe(
+        (response) => {
+          this.data = response;
+          console.log(this.data);
+          this.router.navigate(['/dive-day']);
+        },
+        (error) => {
+          console.error('Error fetching data', error);
+        }
+      );*/
     } else {
       console.log('Formulario inválido');
+    }
+  }
+
+  cargarDatosGeolocalizacion() {
+    this.geograficlocationService.getGeograficLocationList().subscribe(
+      (response) => {
+        this.dataList = response;
+        this.uniqueSites = this.getUniqueSites(response);
+        console.log('Datos de geolocalización cargados:', this.dataList);
+        console.log('Sitios únicos:', this.uniqueSites);
+      },
+      (error) => {
+        console.error('Error en componente: Error fetching data', error);
+      }
+    );
+  }
+
+  getUniqueSites(locations: GeograficLocationResponse[]): string[] {
+    const sites = locations.map(location => location.site);
+    return Array.from(new Set(sites));
+  }
+
+  filterNamesBySite(site: string) {
+    this.filteredNames = this.dataList
+      .filter(location => location.site === site)
+      .map(location => location.name);
+  }
+  logIdByName(name: string) {
+    const location = this.dataList.find(location => location.name === name);
+    if (location) {
+      this.idGeograficLocation = location.id;
+      console.log('ID for selected name:', location.id);
+    } else {
+      console.log('No ID found for selected name');
     }
   }
 }
