@@ -16,34 +16,14 @@ export class HomeComponent {
 
   constructor(private deepdiveService: DeepdiveService, private router: Router) { }
 
-  /*cargarDatos() {
-    const logger: InDeepDiveLogger = new InDeepDiveLogger(
-      "487006",
-      "play_v2_3900602",
-      "Ajo, Cantabria"
-    );
-
-    alert("Se ha eliminado esta parte")
-    this.deepdiveService.cargarDatos(logger).subscribe({
-      next: (response: any) => {
-        this.ejecucionCargarDatos = true;
-        console.log("Entra 1")
-        this.comprobante = true;
-        this.data = response;
-      },
-      error: (error) => {
-        this.ejecucionCargarDatos = true;
-        console.error('Error al cargar los datos:', error);
-        this.comprobante = false;
-        this.data = undefined;
-      }
-    });
-  }*/
   registrarDatosPesca(){
     this.router.navigate(['/formDiveDay']);
   }
   verDatosSemana(){
     this.router.navigate(['/dashboard']);
+  }
+  verDatosDelDia(){
+    this.router.navigate(['dive-day/', 1]);
   }
 
 }

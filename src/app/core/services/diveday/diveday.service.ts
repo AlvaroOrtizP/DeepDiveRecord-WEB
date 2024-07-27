@@ -13,39 +13,41 @@ export class DivedayService {
   constructor(private http: HttpClient) { }
 
   //Este metodo con la idea de ejecutar periandicamente el script de python no sera necesario
-  createDailyDiving(inCreateDailyDiving: InCreateDailyDiving): Observable<DiveDayResponse> {
+  // Método para crear un nuevo diveDay
+  createDailyDiving(inCreateDailyDiving: InCreateDailyDiving): Observable<number> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    return this.http.post<any>(this.createDailyDivingURL, inCreateDailyDiving, { headers })
+    return this.http.post<number>(this.createDailyDivingURL, inCreateDailyDiving, { headers })
       .pipe(
-        map((response: any) => {
-          if (response.success) {
-            console.log('Respuesta exitosa:', response.message);
-            console.log('Respuesta exitosa data:', response.data);
-            return response.data; // Devuelve solo los datos si la respuesta es exitosa
-          } else {
-            console.error('Respuesta de error:', response.error);
-            throw new Error(response.error); // Lanza un error si la respuesta no es exitosa
-          }
-        }),
         catchError(this.handleError)
       );
-
   }
+  
+  // Método para obtener un diveDay por ID
+  cargarDatosDiveDay(id: number): Observable<DiveDayResponse> {
+    const url = `${this.createDailyDivingURL}/${id}`;
+    return this.http.get<DiveDayResponse>(url)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMsg: string;
 
     if (error.error instanceof ErrorEvent) {
-      // Client-side error
+      // Error del cliente
       errorMsg = `Error: ${error.error.message}`;
     } else {
-      // Server-side error
+      // Error del servidor
       errorMsg = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
 
     console.error(errorMsg);
     return throwError(() => new Error(errorMsg));
   }
+
+
 
 
 }

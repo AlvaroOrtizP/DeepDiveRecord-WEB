@@ -48,6 +48,9 @@ export class FishFormComponent {
         valoracion,
         year + "",
         month + "",
+        0,
+        0,
+        0,
         0
       );
 

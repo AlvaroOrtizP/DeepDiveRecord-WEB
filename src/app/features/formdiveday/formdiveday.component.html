@@ -38,6 +38,34 @@
         </div>
       </div>
       <div class="row">
+        <div class="half">
+          <label for="medusas">Presencia de Medusas</label>
+          <select id="medusas" formControlName="medusas">
+            <option value="Sin medusas">Sin medusas</option>
+            <option value="Con medusas">Con medusas</option>
+            <option value="Muchas medusas">Muchas medusas</option>
+          </select>
+        </div>
+        <div class="half">
+          <label for="visibilidad">Visibilidad en el Agua</label>
+          <select id="visibilidad" formControlName="visibilidad">
+            <option value="Muy buena">Muy buena</option>
+            <option value="Buena (8 metros)">Buena (8 metros)</option>
+            <option value="Mala (4-5 metros)">Mala (4-5 metros)</option>
+            <option value="Muy mala (no se ve)">Muy mala (no se ve)</option>
+          </select>
+        </div>
+        <div class="half">
+          <label for="marDeFondo">Mar de Fondo</label>
+          <select id="marDeFondo" formControlName="marDeFondo">
+            <option value="Sin mar de fondo">Sin mar de fondo</option>
+            <option value="Un poco de arrastre">Un poco de arrastre</option>
+            <option value="Arrastre medio">Arrastre medio</option>
+            <option value="Mucho arrastre">Mucho arrastre</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
         <label for="notes">Notes</label>
         <input id="notes" formControlName="notes" type="text">
       </div>

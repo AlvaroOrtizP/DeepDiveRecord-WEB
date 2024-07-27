@@ -12,7 +12,7 @@ export const routes: Routes = [
    { path: '', component: HomeComponent },
    { path: 'dashboard', component: DashboardComponent },
    { path: 'formDiveDay', component: FormDiveDayComponent },
-   { path: 'dive-day', component: DiveDayComponent },
+   { path: 'dive-day/:id', component: DiveDayComponent },
    { path: 'fish-form', component: FishFormComponent },
    { path: 'fish-facts/:id', component: FishFactsComponent }
 ];

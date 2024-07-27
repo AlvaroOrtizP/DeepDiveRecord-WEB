@@ -37,6 +37,9 @@ export class FormDiveDayComponent implements OnInit {
       name: ['', Validators.required], 
       valoracion: ['', Validators.required],
       notes: [''],
+      medusas: ['', Validators.required],
+      visibilidad: ['', Validators.required],
+      marDeFondo: ['', Validators.required],
       fishingList: this.fb.array([]) // Inicializa un FormArray vacío para la lista de pesca
     });
   }
@@ -55,7 +58,7 @@ export class FormDiveDayComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       // Obtener los valores del formulario
-      const { date, beginning, end, site, name, notes, valoracion } = this.form.value;
+      const { date, beginning, end, site, name, notes, valoracion, medusas, visibilidad, marDeFondo } = this.form.value;
       // Convertir el valor de la fecha a un objeto Date
       const dateObj = new Date(date);
   
@@ -76,19 +79,21 @@ export class FormDiveDayComponent implements OnInit {
         notes,
         valoracion,
         this.idGeograficLocation,
+        medusas,
+        visibilidad,
+        marDeFondo
       );
   
       console.log('Nuevo día de buceo:', newDivingDay);
-      /*this.divedayService.createDailyDiving(newDivingDay).subscribe(
-        (response) => {
-          this.data = response;
-          console.log(this.data);
-          this.router.navigate(['/dive-day']);
+      this.divedayService.createDailyDiving(newDivingDay).subscribe(
+        (diveDayId) => {
+          // Navega al componente con el ID del diveDay
+          this.router.navigate(['/dive-day', diveDayId]);
         },
         (error) => {
           console.error('Error fetching data', error);
         }
-      );*/
+      );
     } else {
       console.log('Formulario inválido');
     }
@@ -118,6 +123,7 @@ export class FormDiveDayComponent implements OnInit {
       .filter(location => location.site === site)
       .map(location => location.name);
   }
+
   logIdByName(name: string) {
     const location = this.dataList.find(location => location.name === name);
     if (location) {
