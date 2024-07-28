@@ -21,7 +21,7 @@ export class FormDiveDayComponent implements OnInit {
   uniqueSites: string[] = [];
   filteredNames: string[] = [];
   data!: DiveDayResponse;
-  idGeograficLocation: number =0;
+  idGeograficLocation: number = 0;
 
   constructor(
     private geograficlocationService: GeograficlocationService, 
@@ -35,11 +35,13 @@ export class FormDiveDayComponent implements OnInit {
       end: ['', Validators.required],
       site: ['', Validators.required],
       name: ['', Validators.required], 
-      valoracion: ['', Validators.required],
+      assessment: ['', Validators.required],
       notes: [''],
       medusas: ['', Validators.required],
       visibilidad: ['', Validators.required],
       marDeFondo: ['', Validators.required],
+      pecesPasto: ['', Validators.required],
+      presenciaPlastico: ['', Validators.required],
       fishingList: this.fb.array([]) // Inicializa un FormArray vacío para la lista de pesca
     });
   }
@@ -58,7 +60,8 @@ export class FormDiveDayComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       // Obtener los valores del formulario
-      const { date, beginning, end, site, name, notes, valoracion, medusas, visibilidad, marDeFondo } = this.form.value;
+      const { date, beginning, end, site, name, notes, assessment, medusas, visibilidad, marDeFondo, pecesPasto, presenciaPlastico } = this.form.value;
+      console.log("presencePlastic " + presenciaPlastico)
       // Convertir el valor de la fecha a un objeto Date
       const dateObj = new Date(date);
   
@@ -77,11 +80,13 @@ export class FormDiveDayComponent implements OnInit {
         site,
         name, 
         notes,
-        valoracion,
+        assessment,
         this.idGeograficLocation,
         medusas,
         visibilidad,
-        marDeFondo
+        marDeFondo,
+        pecesPasto,
+        presenciaPlastico
       );
   
       console.log('Nuevo día de buceo:', newDivingDay);
@@ -123,7 +128,7 @@ export class FormDiveDayComponent implements OnInit {
       .filter(location => location.site === site)
       .map(location => location.name);
   }
-
+  
   logIdByName(name: string) {
     const location = this.dataList.find(location => location.name === name);
     if (location) {

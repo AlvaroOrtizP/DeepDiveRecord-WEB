@@ -8,10 +8,13 @@ export class InCreateDailyDiving {
     public site: string,
     public name: string,
     public notes: string,
-    public valoracion: string,
+    public assessment: number,
     public idGeograficLocation: number,
-    public medusas: number,
-    public visibilidad: number, 
-    public marDeFondo: number,
+    public jellyfish: number,
+    public visibility: number, 
+    public seaBackground: number,
+    public fishGrass: number,
+    public presencePlastic: number,
+    
   ) {}
 }

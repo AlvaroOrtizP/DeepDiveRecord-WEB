@@ -38,7 +38,7 @@ export class FishFormComponent {
       const year = dateObj.getFullYear();
 
       // Crear un nuevo objeto InCreateDailyDiving
-      const newDivingDay = new InCreateDailyDiving(
+      /*const newDivingDay = new InCreateDailyDiving(
         day + "",
         beginning,
         end,
@@ -51,10 +51,13 @@ export class FishFormComponent {
         0,
         0,
         0,
-        0
+        0,
+        0,
+        0,
+        
       );
 
-      console.log('Nuevo día de buceo:', newDivingDay);
+      console.log('Nuevo día de buceo:', newDivingDay);*/
       // Enviar datos a la API
       // Comprobar si fue OK la creación del día de buceo
 
