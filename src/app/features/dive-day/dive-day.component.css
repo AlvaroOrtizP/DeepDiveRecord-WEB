@@ -10,12 +10,12 @@
 .mask {
   background-color: rgba(0, 0, 0, 0.6);
   display: flex;
-  flex-direction: column; /* Alinea los elementos en una columna */
-  justify-content: flex-start; /* Alinea el contenido al inicio (parte superior) */
-  align-items: center; /* Centra horizontalmente */
-  min-height: 100%; /* Asegura que la máscara ocupe al menos toda la altura de la ventana */
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: center; 
+  min-height: 100%; 
   text-align: center;
-  padding: 20px; /* Añade un poco de relleno si es necesario */
+  padding: 20px; 
 }
 
 .container {

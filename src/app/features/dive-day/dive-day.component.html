@@ -6,13 +6,13 @@
                     <h2>Información del Día de Buceo</h2>
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">{{diveDayResponse?.geographicalLocationResponse?.name}},
+                            <h5 class="card-title">{{zone}},
                                 {{diveDayResponse?.geographicalLocationResponse?.site}}</h5>
                             <p class="card-text">
                                 <strong>Fecha:</strong>
                                 {{diveDayResponse?.day}}/{{diveDayResponse?.month}}/{{diveDayResponse?.year}}
                                 <strong> Horario:</strong> {{diveDayResponse?.beginning}} - {{diveDayResponse?.end}}<br>
-                                <strong>Valoracion:</strong> {{diveDayResponse?.valoracion}}<br>
+                                <strong>Valoracion:</strong> {{diveDayResponse?.assessment}}<br>
                                 <strong>Notas:</strong> {{diveDayResponse?.notes}}
                             </p>
                         </div>
@@ -80,16 +80,13 @@
                             <tr>
                                 <td>Temperatura en agua</td>
                                 @for (item of diveDayResponse?.windConditionsList; track $index) {
-                                <td>{{ item.waterTtermperature }}</td>
+                                <td>{{ item.waterTermperature }}</td>
                                 }
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-
-
-
             <div class="">
                 <div class="row">
                     <section class="col-md-6">
@@ -201,8 +198,7 @@
                             <img class="moon" src="../../../assets/img/moon/CRESCENT_MOON.png" alt="Luna creciente" />
                             }
                             @case (4) {
-                            <div>Cuarto menguante</div>
-                            <img class="moon" src="../../../assets/img/moon/WANING_MOON.png" alt="Luna menguante" />
+                            <img class="moon" src="../../../assets/img/moon/WANING_MOON.png" alt="Cuarto menguante" />
                             }
                             }
 
@@ -216,30 +212,31 @@
             <!--ZONA MAPA-->
             <section>
                 <div class="image-container">
-                    <img class="img_lugar" [src]="'../../../assets/img/lugares/Isla/' + diveDayResponse?.geographicalLocationResponse?.site + '.jpg'"  alt="Marea Baja" width="1000" height="600" />
+                    <img class="img_lugar" [src]="'../../../assets/img/lugares/'+ diveDayResponse?.geographicalLocationResponse?.site + '/' + diveDayResponse?.geographicalLocationResponse?.name + '.jpg'"  alt="Marea Baja" width="1000" height="600" />
                     <!-- Agregar marcas -->
+       
                      @if(marcasActivas){
-                        @for (fishing of diveDayResponse?.fishinglist; track $index) {
-                            @if(fishing.geographicalLocationResponse.site == diveDayResponse?.geographicalLocationResponse?.site){
-                                <div class="marker"  [style.top.%]="fishing.lat" 
-                                [style.left.%]="fishing.long"  title="Zona de peces 1"> <span>{{$index + 1}}</span></div>
+
+                        @for (fishing of diveDayResponse?.fishingList; track $index) {
+                            @if(fishing?.site == diveDayResponse?.geographicalLocationResponse?.site){
+                               
+                                <div class="marker"  [style.top.%]="fishing.latG" 
+                                [style.left.%]="fishing.longG"  title="Zona de peces 1"> <span>{{$index + 1}}</span></div>
                             }
                            
                         }
                      }
                 </div>
             </section>
-            
-            
-
             <div class="row">
                 <div class="col-md-12">
                     <h4>Pesca del Día</h4>
                     <div class="list-group">
-                        @for (fishing of diveDayResponse?.fishinglist; track $index) {
+              
+                        @for (fishing of diveDayResponse?.fishingList; track $index) {
                         <div class="list-group-item d-flex justify-content-between align-items-center">
                             <div>
-                                <strong>{{fishing.fish.name}}</strong><br>
+                                <strong>{{fishing?.nameFish}}</strong><br>
                                 <small>Notas: {{fishing.notes}}</small>
                             </div>
                             <div>

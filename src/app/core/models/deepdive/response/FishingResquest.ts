@@ -9,6 +9,7 @@ export class FishingResquest {
         public geographicalLocationResponse: GeographicalLocationResponse,
         public lat: number, //Norte - Sur
         public log: number, //Este - Oeste 
+
     ) {}
 }
 export class Fish {

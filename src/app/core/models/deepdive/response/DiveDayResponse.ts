@@ -8,7 +8,7 @@ export class DiveDayResponse {
         public beginning: string,
         public end: string,
         public site: string,
-        public valoracion: string,
+        public assessment: string,
         public notes: string,
         
         /*Datos de geographical_location */
@@ -21,7 +21,7 @@ export class DiveDayResponse {
         public windConditionsList: WindCondition[],
 
         /*Tabla fishing */
-        public fishinglist: Fishing[],
+        public fishingList: Fishing[],
     ) { }
 }
 export class GeographicalLocationResponse{
@@ -73,27 +73,14 @@ export class WindCondition {
 }
 export class Fishing {
     constructor(
-        public id: number,
-        /*Tabla fish */
-        public fish: Fish,
+        public id: number,       
         public notes: string,
         public caught: boolean,
         public weight: number,
-        //Mapa grande
-        public lat: number, //Norte - Sur
-        public long: number, //Este - Oeste
-        public geographicalLocationResponse: GeographicalLocationResponse,    
-    ) {}
-}
-export class Fish {
-    constructor(
-        public id: number,
+        public nameFish: string,
         public name: string,
         public site: string,
-        public firstSighting: string,
-        public firstLast: string,
-        public startSeason: string,
-        public endSeason: string,
-        public firstLifeWarning: string,
+        public latG: number, //Norte - Sur
+        public longG: number, //Este - Oeste
     ) {}
 }

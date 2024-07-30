@@ -29,13 +29,13 @@ export class DashboardComponent implements OnInit { // Implementar OnInit para u
     nextWeek.setDate(today.getDate() + 7);
 
     const fromYear: string = today.getFullYear().toString();
-    const fromMonth: string = (today.getMonth() + 1).toString().padStart(2, '0'); // Meses en JavaScript son 0-indexed
+    const fromMonth: string = (today.getMonth() + 1).toString().padStart(2, '0'); 
     const fromDay: string = today.getDate().toString().padStart(2, '0');
 
     const toYear: string = nextWeek.getFullYear().toString();
     const toMonth: string = (nextWeek.getMonth() + 1).toString().padStart(2, '0');
     const toDay: string = nextWeek.getDate().toString().padStart(2, '0');
-
+    
     const inGetDataWeek: InGetDataWeek = {
       page: 0,
       size: 20,

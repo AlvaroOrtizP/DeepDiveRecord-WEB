@@ -3,28 +3,75 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="third">
-          <label for="date">Date</label>
-          <input id="date" formControlName="date" type="date">
+          <label for="fishId">Pez</label>
+          <select id="fishId" formControlName="fishId">
+            @for (fish of fisList; track $index) {
+              <option [value]="fish.id">{{ fish.name }}</option>
+              }
+          </select>
         </div>
         <div class="third">
-          <label for="beginning">Beginning</label>
-          <input id="beginning" formControlName="beginning" type="text">
-        </div>
-        <div class="third">
-          <label for="end">End</label>
-          <input id="end" formControlName="end" type="text">
+          <label for="caught">Caught</label>
+          <input id="caught" formControlName="caught" type="checkbox">
         </div>
       </div>
       <div class="row">
         <div class="half">
-          <label for="site">Site</label>
-          <input id="site" formControlName="site" type="text">
+          <label for="site">Pueblo</label>
+          <select id="site" formControlName="site" (change)="onSiteChange($event)">
+            @for (site of uniqueSites; track $index) {
+              <option [value]="site">{{ site }}</option>
+              }
+          </select>
+        </div>
+        <div class="half">
+          <label for="name">Zona</label>
+          <select id="name" formControlName="name">
+            @for (name of filteredNames; track $index) {
+              <option [value]="name">{{ name }}</option>
+            }
+          </select>
         </div>
       </div>
+     
       <div class="row">
-        <label for="notes">Notes</label>
-        <input id="notes" formControlName="notes" type="text">
+        <div class="half">
+          <label for="notes">Notes</label>
+          <input id="notes" formControlName="notes" type="text">
+        </div>
+      
+        <div class="half">
+          <label for="weight">Weight</label>
+          <input id="weight" formControlName="weight" type="number" step="any">
+        </div>
       </div>
+
+      <div class="row">
+        <div class="third">
+          <label for="lat">Latitude</label>
+          <input id="lat" formControlName="lat" type="number" step="any">
+        </div>
+        <div class="third">
+          <label for="long">Longitude</label>
+          <input id="long" formControlName="long" type="number" step="any">
+        </div>
+      </div>
+      <br>
+      <!-- ZONA MAPA -->
+      <section>
+        <div class="image-container" (click)="onMapClick($event)">
+          <img class="img_lugar" [src]="'../../../assets/img/lugares/Isla/Acantilado_Isla_Oeste.jpg'" alt="Map"
+            width="1000" height="600" />
+          <!-- Única marca -->
+          @if(markerVisible){
+            <div  [style.top.%]="markerLat" [style.left.%]="markerLong" class="marker" title="Selected location">
+              <span>1</span>
+            </div>
+           }
+         
+        </div>
+      </section>
+      <br>
       <button type="submit">Submit</button>
     </form>
   </div>

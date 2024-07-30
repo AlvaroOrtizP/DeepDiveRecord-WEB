@@ -20,7 +20,7 @@
           <label for="site">Site</label>
           <select id="site" formControlName="site">
             @for (site of uniqueSites; track $index) {
-              <option [value]="site">{{ site }}</option>
+            <option [value]="site">{{ site }}</option>
             }
           </select>
         </div>
@@ -28,13 +28,63 @@
           <label for="name">Name</label>
           <select id="name" formControlName="name">
             @for (name of filteredNames; track $index) {
-              <option [value]="name">{{ name }}</option>
+            <option [value]="name">{{ name }}</option>
             }
           </select>
         </div>
         <div class="half">
-          <label for="valoracion">Valoracion</label>
-          <input id="valoracion" formControlName="valoracion" type="text">
+          <label for="assessment">Valoracion</label>
+          <select id="assessment" formControlName="assessment">
+            <option value="1">Muy buena</option>
+            <option value="2">Buena</option>
+            <option value="3">Regular</option>
+            <option value="4">Mala</option>
+            <option value="5">Muy mala</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="half">
+          <label for="jellyfish">Presencia de Medusas</label>
+          <select id="jellyfish" formControlName="medusas">
+            <option value="1">Sin medusas</option>
+            <option value="2">Con medusas</option>
+            <option value="3">Muchas medusas</option>
+          </select>
+        </div>
+        <div class="half">
+          <label for="visibility">Visibilidad en el Agua</label>
+          <select id="visibility" formControlName="visibilidad">
+            <option value="1">Muy buena</option>
+            <option value="2">Buena (8 metros)</option>
+            <option value="3">Mala (4-5 metros)</option>
+            <option value="4">Muy mala (no se ve)</option>
+          </select>
+        </div>
+        <div class="half">
+          <label for="seaBackground">Mar de Fondo</label>
+          <select id="seaBackground" formControlName="marDeFondo">
+            <option value="1">Sin mar de fondo</option>
+            <option value="2">Un poco de arrastre</option>
+            <option value="3">Arrastre medio</option>
+            <option value="4">Mucho arrastre</option>
+          </select>
+        </div>
+        <div class="half">
+          <label for="fishGrass">Peces Pasto</label>
+          <select id="fishGrass" formControlName="pecesPasto">
+            <option value="1">Poco</option>
+            <option value="2">Medio</option>
+            <option value="3">Mucho</option>
+          </select>
+        </div>
+        <div class="half">
+          <label for="presencePlastic">Presencia de Plástico</label>
+          <select id="presencePlastic" formControlName="presenciaPlastico">
+            <option value="1">Nada</option>
+            <option value="2">Poco</option>
+            <option value="3">Mucho</option>
+          </select>
         </div>
       </div>
       <div class="row">
