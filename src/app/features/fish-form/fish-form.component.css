@@ -3,15 +3,17 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-    height: 100vh;
+    height: 120vh;
   }
   .mask {
     background-color: rgba(0, 0, 0, 0.6);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    flex-direction: column; 
+    justify-content: flex-start; 
+    align-items: center; 
+    min-height: 100%; 
     text-align: center;
+    padding: 20px; 
   }
   form {
     background: white;
@@ -40,15 +42,6 @@
     border-radius: 5px;
     box-sizing: border-box;
   }
-  select {
-    appearance: none;
-    background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>') no-repeat right 10px center;
-    background-size: 16px 16px;
-  }
-  select:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-  }
   button {
     padding: 10px 20px;
     background-color: #007bff;
@@ -57,4 +50,20 @@
     border-radius: 5px;
     cursor: pointer;
   }
+  .image-container {
+    position: relative;
+  }
   
+  .img_lugar {
+    display: block;
+    max-width: 100%;
+  }
+  
+  .marker {
+    position: absolute;
+    background-color: red;
+    color: white;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+  }

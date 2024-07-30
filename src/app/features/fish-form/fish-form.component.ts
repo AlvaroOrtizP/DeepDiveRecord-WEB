@@ -1,7 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { InCreateDailyDiving } from '../../core/models/deepdive/request/InCreateDailyDiving';
+import { ActivatedRoute, Router } from '@angular/router';
+import { InCreateFishing } from '../../core/models/deepdive/request/InCreateFishing';
+import { GeograficLocationResponse } from '../../core/models/deepdive/response/GeograficLocationResponse';
+import { GeograficlocationService } from '../../core/services/geograficlocation/geograficlocation.service';
+import { FishService } from '../../core/services/fish/fish.service';
+import { FishResponse } from '../../core/models/deepdive/response/FishResponse';
+import { FishingService } from '../../core/services/fishing/fishing.service';
 
 @Component({
   selector: 'app-fish-form',
@@ -10,61 +15,138 @@ import { InCreateDailyDiving } from '../../core/models/deepdive/request/InCreate
   templateUrl: './fish-form.component.html',
   styleUrls: ['./fish-form.component.css']
 })
-export class FishFormComponent {
+export class FishFormComponent implements OnInit {
   form: FormGroup;
+  markerLat: number | undefined;
+  markerLong: number | undefined;
+  markerVisible: boolean = false;
+  dataList: GeograficLocationResponse[] = [];
+  fisList: FishResponse[] = [];
+  uniqueSites: string[] = [];
+  filteredNames: string[] = [];
+  idGeograficLocation: number = 0;
+  diveDayId: number = 0;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder, 
+    private router: Router,
+    private route: ActivatedRoute,
+    private geograficlocationService: GeograficlocationService,
+    private fishService: FishService,
+    private fisingService: FishingService
+  ) {
     this.form = this.fb.group({
-      date: ['', Validators.required],
-      beginning: ['', Validators.required],
-      end: ['', Validators.required],
+      fishId: ['', Validators.required],
+      caught: [false, Validators.required],
       site: ['', Validators.required],
-      notes: ['', Validators.required],
-      fishingList: this.fb.array([]) // Inicializa un FormArray vacío para la lista de pesca
+      name: ['', Validators.required],
+      lat: ['', Validators.required],
+      long: ['', Validators.required],
+      notes: [''],
+      weight: ['', Validators.required]
+    });
+  }
+
+  ngOnInit(): void {
+    this.cargarDatosGeolocalizacion();
+    this.cargarDatosPeces();
+    this.diveDayId = Number(this.route.snapshot.paramMap.get('diveDayId'));  // Obtén el id del dive day de la ruta
+  }
+
+  onMapClick(event: MouseEvent): void {
+    const imageElement = event.target as HTMLImageElement;
+    const rect = imageElement.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    const lat = (y / rect.height) * 100;
+    const long = (x / rect.width) * 100;
+
+    this.markerLat = lat;
+    this.markerLong = long;
+    this.markerVisible = true;
+
+    this.form.patchValue({
+      lat: lat.toFixed(2),
+      long: long.toFixed(2)
     });
   }
 
   onSubmit() {
+    console.log('Formulario valores actuales:', this.form.value);
     if (this.form.valid) {
-      // Obtener los valores del formulario
-      const { date, beginning, end, site, notes, valoracion } = this.form.value;
-
-      // Convertir el valor de la fecha a un objeto Date
-      const dateObj = new Date(date);
-
-      // Extraer día, mes y año
-      const day = dateObj.getDate();
-      const month = dateObj.getMonth() + 1;
-      const year = dateObj.getFullYear();
-
-      // Crear un nuevo objeto InCreateDailyDiving
-      /*const newDivingDay = new InCreateDailyDiving(
-        day + "",
-        beginning,
-        end,
-        site,
-        "name",
-        notes,
-        valoracion,
-        year + "",
-        month + "",
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        
+      const fishingData = new InCreateFishing(
+        this.form.value.fishId,
+        this.form.value.caught,
+        this.form.value.name,
+        this.form.value.site,
+        parseFloat(this.form.value.lat),
+        parseFloat(this.form.value.long),
+        this.form.value.notes,
+        this.form.value.weight,
+        this.diveDayId
       );
-
-      console.log('Nuevo día de buceo:', newDivingDay);*/
-      // Enviar datos a la API
-      // Comprobar si fue OK la creación del día de buceo
-
-      // En caso OK redirigir a la pantalla de datos del día de buceo
-      this.router.navigate(['/dive-day']);
+      console.log(fishingData);
+      this.fisingService.createFishing(fishingData).subscribe(
+        (fishingId) => {
+          this.router.navigate(['/dive-day', 2]);
+        },
+        (error) => {
+          console.error('Error fetching data', error);
+        }
+      );
     } else {
-      console.log('Formulario inválido');
+      console.log('Formulario inválido:', this.form);
+      this.markAllAsTouched();
     }
+  }
+
+  markAllAsTouched() {
+    this.form.markAllAsTouched();
+  }
+
+  cargarDatosGeolocalizacion() {
+    this.geograficlocationService.getGeograficLocationList().subscribe(
+      (response) => {
+        this.dataList = response;
+        this.uniqueSites = this.getUniqueSites(response);
+        console.log('Datos de geolocalización cargados:', this.dataList);
+        console.log('Sitios únicos:', this.uniqueSites);
+      },
+      (error) => {
+        console.error('Error en componente: Error fetching data', error);
+      }
+    );
+  }
+
+  cargarDatosPeces() {
+    this.fishService.getAllFishList().subscribe(
+      (response) => {
+        this.fisList = response;
+      },
+      (error) =>{
+        console.error('Error en componente: Error cargarDatosPeces', error);
+      }
+    );
+  }
+
+  getUniqueSites(locations: GeograficLocationResponse[]): string[] {
+    const sites = locations.map(location => location.site);
+    return Array.from(new Set(sites));
+  }
+
+  onSiteChange(event: Event) {
+    const target = event.target as HTMLSelectElement;
+    if (target) {
+      const selectedSite = target.value;
+      this.filterNamesBySite(selectedSite);
+      this.form.patchValue({ name: '' });
+    }
+  }
+
+  filterNamesBySite(site: string) {
+    this.filteredNames = this.dataList
+      .filter(location => location.site === site)
+      .map(location => location.name);
   }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DiveDayResponse, Fish, Fishing, GeographicalLocationResponse, TideTableResponse, WindCondition } from '../../core/models/deepdive/response/DiveDayResponse';
+import { DiveDayResponse} from '../../core/models/deepdive/response/DiveDayResponse';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DivedayService } from '../../core/services/diveday/diveday.service';
 
@@ -58,7 +58,8 @@ export class DiveDayComponent {
     this.router.navigate(['/fish-facts', id]);
   }
   anadirPez() {
-    this.router.navigate(['/fish-form']);
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.router.navigate(['/fish-form', { diveDayId: id }]);
   }
   modificarDiaBuceo() {
     alert("modificarDiaBuceo")
