@@ -23,7 +23,7 @@ export class HomeComponent {
     this.router.navigate(['/dashboard']);
   }
   verDatosDelDia(){
-    this.router.navigate(['dive-day/', 2]);
+    this.router.navigate(['dive-day/', 1]);
   }
 
 }
