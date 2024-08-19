@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DiveDayResponse} from '../../core/models/deepdive/response/DiveDayResponse';
+import { DiveDayDetailsResponse} from '../../core/models/deepdive/response/DiveDayDetailsResponse';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DivedayService } from '../../core/services/diveday/diveday.service';
 
@@ -14,7 +14,7 @@ import { DivedayService } from '../../core/services/diveday/diveday.service';
 })
 export class DiveDayComponent {
 
-  diveDayResponse: DiveDayResponse | undefined;
+  diveDayResponse: DiveDayDetailsResponse | undefined;
   conditionAmanecer: String | undefined;
   conditionAtardecer: String | undefined;
   marcasActivas: boolean = true;

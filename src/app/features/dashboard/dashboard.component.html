@@ -30,12 +30,9 @@
 
               @for (item of dataList; track $index) {
               <td class="arrow">
-                <img [style.transform]="'rotate(119 deg)'" src="assets/img/arrow-right-solid.svg"
-                  alt="Arrow" />
+                <img [style.transform]="'rotate(' + item.windDirection + 'deg)'" src="assets/img/arrow-right-solid.svg" alt="Arrow" />
               </td>
               }
-              <!-- {{item.windDirection}-->
-
             </tr>
             <tr>
               <td>Altura de ola</td>
@@ -48,6 +45,15 @@
               <td>Periodo</td>
               @for (item of dataList; track $index) {
               <td>{{ item.wavePeriod }}</td>
+              }
+            </tr>
+            <tr>
+              <td>Direccion de las olas</td>
+
+              @for (item of dataList; track $index) {
+              <td class="arrow">
+                <img [style.transform]="'rotate(' + item.waveDirection + 'deg)'" src="assets/img/arrow-right-solid.svg" alt="Arrow" />
+              </td>
               }
             </tr>
             <tr>

@@ -1,19 +1,19 @@
 <div class="principal">
     <div class="mask">
         <div class="container my-5">
-            <h1 class="mb-4">Fishing Details</h1>
+            <h2 class="mb-4">Datos de la pesca</h2>
             <div class="row">
                 <!-- Fishing Info -->
                 <div class="col-md-6">
                     <div class="card mb-4">
                         <div class="card-header">
-                            <h5 class="card-title">Fishing Information</h5>
+                            <h5 class="card-title">Informacion sobre la pesca</h5>
                         </div>
                         <div class="card-body">
-                            <p><strong>Fishing ID:</strong> {{ fishing?.id }}</p>
-                            <p><strong>Notes:</strong> {{ fishing?.notes }}</p>
-                            <p><strong>Caught:</strong> {{ fishing?.caught ? 'Yes' : 'No' }}</p>
-                            <p><strong>Weight:</strong> {{ fishing?.weight }} kg</p>
+                            <p><strong>Identificador:</strong> {{ fishing?.id }}</p>
+                            <p><strong>Capturado:</strong> {{ fishing?.caught ? 'SI' : 'NO' }}</p>
+                            <p><strong>Peso:</strong> {{ fishing?.weight }} kg</p>
+                            <p><strong>Notas:</strong> {{ fishing?.notes }}</p>
                         </div>
                     </div>
                 </div>
@@ -22,17 +22,17 @@
                 <div class="col-md-6">
                     <div class="card mb-4">
                         <div class="card-header">
-                            <h5 class="card-title">Fish Information</h5>
+                            <h5 class="card-title">Informacion sobre el pez</h5>
                         </div>
                         <div class="card-body">
-                            <p><strong>Fish ID:</strong> {{ fishing?.fish?.id }}</p>
-                            <p><strong>Name:</strong> {{ fishing?.fish?.name }}</p>
-                            <p><strong>Site:</strong> {{ fishing?.fish?.site }}</p>
-                            <p><strong>First Sighting:</strong> {{ fishing?.fish?.firstSighting }}</p>
-                            <p><strong>Last Sighting:</strong> {{ fishing?.fish?.firstLast }}</p>
-                            <p><strong>Start Season:</strong> {{ fishing?.fish?.startSeason }}</p>
-                            <p><strong>End Season:</strong> {{ fishing?.fish?.endSeason }}</p>
-                            <p><strong>First Life Warning:</strong> {{ fishing?.fish?.firstLifeWarning }}</p>
+                            <p><strong>Identificador del pez:</strong> {{ fishing?.fishid }}</p>
+                            <p><strong>Nombre:</strong> {{ fishing?.name }}</p>
+                            <p><strong>Lugar:</strong> {{ fishing?.site }}</p>
+                            <p><strong>Primer avistamiento del año:</strong> {{ fishing?.firstSighting }}</p>
+                            <p><strong>Ultimo avistamiento del año:</strong> {{ fishing?.firstLast }}</p>
+                            <p><strong>Comienzo de temporada:</strong> {{ fishing?.startSeason }}</p>
+                            <p><strong>Fin de temporada:</strong> {{ fishing?.endSeason }}</p>
+                            <p><strong>Primera vez que se vio el pez:</strong> {{ fishing?.firstLifeWarning }}</p>
                         </div>
                     </div>
                 </div>
@@ -40,12 +40,13 @@
         </div>
         <!--ZONA MAPA-->
         <section>
+            <h4>{{fishing?.geographieSite + ', ' + zone}}</h4>
             <div class="image-container">
-                <img class="img_lugar" [src]="'../../../assets/img/lugares/Isla/' + fishing?.geographicalLocationResponse?.site + '.jpg'"  alt="Marea Baja" width="1000" height="600" />
+                <img class="img_lugar" [src]="'../../../assets/img/lugares/' + fishing?.geographieSite + '/' + fishing?.geographieName + '.jpg'"  alt="Marea Baja" />
                 <!-- Agregar marcas -->
                  @if(marcasActivas){
-                        <div class="marker"  [style.top.%]="fishing?.lat" 
-                        [style.left.%]="fishing?.log"  title="Zona de peces 1"></div>
+                        <div class="marker"  [style.top.%]="fishing?.latG" 
+                        [style.left.%]="fishing?.logG"  title="Zona de peces 1"></div>
                  }
             </div>
         </section>

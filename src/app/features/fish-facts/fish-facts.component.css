@@ -17,3 +17,30 @@
     text-align: center;
     padding: 20px; /* Añade un poco de relleno si es necesario */
   }
+  .image-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .img_lugar {
+    width: 1280px;
+    height: 800px;
+  }
+  
+.marker {
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  background-color: white;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+}
+h2{
+  margin-top: 1px;
+  color: white;
+}
+h4{
+  margin-top: 1px;
+  color: white;
+}

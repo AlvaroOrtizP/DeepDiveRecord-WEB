@@ -22,8 +22,8 @@ export class HomeComponent {
   verDatosSemana(){
     this.router.navigate(['/dashboard']);
   }
-  verDatosDelDia(){
-    this.router.navigate(['dive-day/', 1]);
+  verListaBuceos(){
+    this.router.navigate(['dive-day-list']);
   }
 
 }

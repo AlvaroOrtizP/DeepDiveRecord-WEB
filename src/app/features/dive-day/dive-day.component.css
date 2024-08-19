@@ -114,8 +114,8 @@ th, td {
 
 .marker {
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 17px;
+  height: 17px;
   background-color: white;
   border-radius: 50%;
   border: 2px solid white;

@@ -4,14 +4,14 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-    height: 100vh;
+    height: 85vh;
   }
   .mask {
     background-color: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 85vh;
     text-align: center;
   }
   .text-white {
@@ -38,7 +38,7 @@
 }
 
 .arrow img {
-    width: 40px; /* Ajusta el tamaño del SVG según sea necesario */
+    width: 30px; 
     height: auto;
 }
 

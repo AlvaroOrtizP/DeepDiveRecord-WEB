@@ -20,10 +20,10 @@ export class DashboardComponent implements OnInit { // Implementar OnInit para u
 
   ngOnInit(): void {
     console.log('El componente se ha iniciado');
-    this.miMetodoDeInicio();
+    this.cargaInicial();
   }
 
-  miMetodoDeInicio() {
+  cargaInicial() {
     const today: Date = new Date();
     const nextWeek: Date = new Date();
     nextWeek.setDate(today.getDate() + 7);

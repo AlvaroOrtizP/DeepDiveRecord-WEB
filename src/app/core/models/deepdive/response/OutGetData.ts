@@ -9,6 +9,7 @@ export interface OutGetData {
     gustsOfWind: number;
     waveHeight: string;
     wavePeriod: number;
+    waveDirection: number;
     earthTemperature: number;
     waterTtermperature: string;
     f1: number;
