@@ -1,45 +1,85 @@
+.principal {
+  background-image: url('../../../assets/img/sea.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  height: 85vh;
  
-  .principal {
-    background-image: url('../../../assets/img/sea.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    height: 100vh;
-  }
-  .mask {
-    background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-  }
-  .text-white {
-    color: #fff !important;
-  }
-  .container h1 {
-    color: #fff;
-  }
-  .table-striped tbody tr:nth-of-type(odd) {
-    background-color: rgba(255, 255, 255, 0.05);
-  }
-  .table-striped tbody tr:nth-of-type(even) {
-    background-color: rgba(255, 255, 255, 0.15);
-  }
-  .table thead th {
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.7);
-  }
+}
 
-  .arrow-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.mask {
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 85vh;
+  text-align: center;
+  padding-top: 5%;
+}
+
+.text-white {
+  color: #fff !important;
+}
+
+.container h1 {
+  color: #fff;
+}
+
+.table-responsive {
+  max-width: 90%;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  table-layout: auto;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.table thead th {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.arrow-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .arrow img {
-    width: 40px; /* Ajusta el tamaño del SVG según sea necesario */
-    height: auto;
+  width: 30px;
+  height: auto;
 }
 
-  
+/* Fija la primera columna */
+.sticky-col {
+ position: -webkit-sticky; /* Para navegadores basados en Webkit */
+ position: sticky;
+ left: 0;
+ background-color: rgba(0, 0, 0, 0.7); /* Color de fondo para que no se mezcle con el contenido que se desplaza */
+ z-index: 2; /* Asegura que esté por encima de las demás columnas */
+}
+
+/* Asegurar que las imágenes en las columnas fijas no se desplazan */
+.sticky-col .arrow img {
+ width: 30px;
+ height: auto;
+}
+
+
+
+/* Estilos para los días impares */
+.day-group-1 {
+  background-color: rgba(255, 255, 255, 0.1) !important;; /* Color de fondo para días impares */
+}
+
+/* Estilos para los días pares */
+.day-group-2 {
+  background-color: rgba(0, 0, 0, 0.2); /* Color de fondo para días pares */
+}

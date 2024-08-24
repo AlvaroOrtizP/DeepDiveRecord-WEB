@@ -11,30 +11,10 @@ import { InGetDataWeek } from '../models/deepdive/request/InGetDataWeek';
 })
 export class DeepdiveService {
 
-  private runPythonScriptURL = 'http://localhost:8080/windwu/runPythonScript';
   private getDataWeekUrl = 'http://localhost:8080/windwu/getDataWeek';
 
   constructor(private http: HttpClient) { }
   
-  //Este metodo con la idea de ejecutar periandicamente el script de python no sera necesario
-  cargarDatos(inDeepDiveLogger: InDeepDiveLogger): Observable<any> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-    return this.http.post<any>(this.runPythonScriptURL, inDeepDiveLogger, { headers })
-      .pipe(
-        map((response: any) => {
-          if (response.success) {
-            console.log('Respuesta exitosa:', response.message);
-            return response.data; // Devuelve solo los datos si la respuesta es exitosa
-          } else {
-            console.error('Respuesta de error:', response.error);
-            throw new Error(response.error); // Lanza un error si la respuesta no es exitosa
-          }
-        }),
-        catchError(this.handleError)
-      );
-  }
-
   //Obtencion de los datos semanales de climatologia
   getDataWeek(inGetDataWeek: InGetDataWeek): Observable<OutGetDataList> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');

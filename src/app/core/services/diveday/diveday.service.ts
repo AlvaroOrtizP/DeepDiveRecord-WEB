@@ -1,14 +1,17 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { InCreateDailyDiving } from '../../models/deepdive/request/InCreateDailyDiving';
+import { DiveDayDetailsResponse } from '../../models/deepdive/response/DiveDayDetailsResponse';
+import { Page } from '../../models/deepdive/response/Page';
 import { DiveDayResponse } from '../../models/deepdive/response/DiveDayResponse';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DivedayService {
-  private createDailyDivingURL = 'http://localhost:8080/dailyDiving';
+  private dailyDivingURL = 'http://localhost:8080/dailyDiving';
+  private dailyDivingListURL = 'http://localhost:8080/dailyDiving/list';
 
   constructor(private http: HttpClient) { }
 
@@ -17,19 +20,36 @@ export class DivedayService {
   createDailyDiving(inCreateDailyDiving: InCreateDailyDiving): Observable<number> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    return this.http.post<number>(this.createDailyDivingURL, inCreateDailyDiving, { headers })
+    return this.http.post<number>(this.dailyDivingURL, inCreateDailyDiving, { headers })
       .pipe(
         catchError(this.handleError)
       );
   }
   
   // Método para obtener un diveDay por ID
-  cargarDatosDiveDay(id: number): Observable<DiveDayResponse> {
-    const url = `${this.createDailyDivingURL}/${id}`;
-    return this.http.get<DiveDayResponse>(url)
+  cargarDatosDiveDay(id: number): Observable<DiveDayDetailsResponse> {
+    const url = `${this.dailyDivingURL}/${id}`;
+    return this.http.get<DiveDayDetailsResponse>(url)
       .pipe(
         catchError(this.handleError)
       );
+  }
+
+  // Método para obtener una lista paginada de días de buceo
+  getFishingDays(page: number = 0, size: number = 10, zona?: string, sortBy: string = 'fecha', sortDirection: string = 'asc'): Observable<Page<DiveDayResponse>> {
+    let params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString())
+      .set('sortBy', sortBy)
+      .set('sortDirection', sortDirection);
+
+    if (zona) {
+      params = params.set('zona', zona);
+    }
+
+    return this.http.get<Page<DiveDayResponse>>(this.dailyDivingListURL, { params }).pipe(
+      catchError(this.handleError)
+    );
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
@@ -46,8 +66,6 @@ export class DivedayService {
     console.error(errorMsg);
     return throwError(() => new Error(errorMsg));
   }
-
-
 
 
 }

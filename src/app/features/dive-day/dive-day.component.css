@@ -5,6 +5,7 @@
   background-position: center center;
   height: 150vh;
   overflow-y: auto;
+  min-height: 250vh;
 }
 
 .mask {
@@ -107,14 +108,14 @@ th, td {
 }
 
 .img_lugar {
-  width: 100%;
-  height: auto;
+  width: 1300px;
+  height: 800px;
 }
 
 .marker {
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 17px;
+  height: 17px;
   background-color: white;
   border-radius: 50%;
   border: 2px solid white;

@@ -1,0 +1,92 @@
+<div class="principal">
+    <div class="mask">
+      <div class="container my-4">
+        <div class="row mb-4">
+          <div class="col-md-12 text-center">
+            <h2>Lista de Días de Pesca</h2>
+          </div>
+        </div>
+  
+        <form [formGroup]="form" (ngSubmit)="onFilterSubmit()">
+          <div class="row mb-4">
+            <div class="col-md-4">
+              <label for="site">Filtrar por Pueblo:</label>
+              <select id="site" class="form-control" formControlName="site" (change)="onSiteChange($event)" >
+                <option  [value]="0" [selected]>TODOS </option>
+                @for (site of uniqueSites; track $index) {
+                <option [value]="site">{{ site }}</option>
+                }
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label for="name">Filtrar por Zona:</label>
+              <select id="name" class="form-control" formControlName="name" (click)="onGeograficChange($event)">
+                <option [value]="0" [selected]>TODOS</option>
+                @for (name of filteredNames; track $index) {
+                <option [value]="name">{{ name }}</option>
+                }
+              </select>
+            </div>
+  
+            <div class="col-md-4">
+              <label for="sortDate">Ordenar por:</label>
+              <select id="sortDate" class="form-control" formControlName="sortBy">
+                <option value="fecha">Fecha</option>
+                <option value="valoracion">Valoración</option>
+              </select>
+            </div>
+  
+            <div class="col-md-4 mt-3">
+              <label for="sortDirection">Dirección:</label>
+              <select id="sortDirection" class="form-control" formControlName="sortDirection">
+                <option value="asc">Ascendente</option>
+                <option value="desc">Descendente</option>
+              </select>
+            </div>
+          </div>
+  
+          <div class="row mb-4">
+            <div class="col-md-12 text-center">
+              <button type="submit" class="btn btn-primary">Aplicar Filtros</button>
+            </div>
+          </div>
+        </form>
+  
+        <div class="row">
+          @for (fishingDay of fishingDays; track fishingDay.id) {
+          <div class="col-md-4">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h5 class="card-title">{{ fishingDay.date }}</h5>
+                <p class="card-text">Lugar: {{ fishingDay.site }}</p>
+                <p class="card-text">Valoración:</p>
+                <p class="card-text">
+                  <!-- Estrellas llenas -->
+                  @for (i of range(fishingDay.assessment); track i) {
+                  <i class="fa fa-star filled"></i>
+                  }
+                  <!-- Estrellas vacías -->
+                  @for (i of range(5 - fishingDay.assessment); track i) {
+                  <i class="fa fa-star"></i>
+                  }
+                </p>
+              </div>
+              <button (click)="verDiveDayDetails(fishingDay.id)" class="btn btn-outline-light btn-lg m-2"
+                role="button">Ver datos del dia</button>
+            </div>
+          </div>
+          }
+        </div>
+  
+        <!-- Pagination Controls -->
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <button (click)="onPageChange(page - 1)" [disabled]="page === 1">Anterior</button>
+            <span>Página {{ page }} de {{ totalPages }}</span>
+            <button (click)="onPageChange(page + 1)" [disabled]="page === totalPages">Siguiente</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

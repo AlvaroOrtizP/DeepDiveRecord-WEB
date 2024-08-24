@@ -4,7 +4,7 @@ import { InCreateDailyDiving } from '../../core/models/deepdive/request/InCreate
 import { InFishing } from '../../core/models/deepdive/request/InFishing';
 import { Router } from '@angular/router';
 import { DivedayService } from '../../core/services/diveday/diveday.service';
-import { DiveDayResponse } from '../../core/models/deepdive/response/DiveDayResponse';
+import { DiveDayDetailsResponse } from '../../core/models/deepdive/response/DiveDayDetailsResponse';
 import { GeograficlocationService } from '../../core/services/geograficlocation/geograficlocation.service';
 import { GeograficLocationResponse } from '../../core/models/deepdive/response/GeograficLocationResponse';
 
@@ -20,7 +20,7 @@ export class FormDiveDayComponent implements OnInit {
   dataList: GeograficLocationResponse[] = [];
   uniqueSites: string[] = [];
   filteredNames: string[] = [];
-  data!: DiveDayResponse;
+  data!: DiveDayDetailsResponse;
   idGeograficLocation: number = 0;
 
   constructor(

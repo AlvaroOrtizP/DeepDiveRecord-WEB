@@ -1,26 +1,28 @@
 .principal {
-    background-image: url('../../../assets/img/sea.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    height: 120vh;
-  }
-  .mask {
-    background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
-    flex-direction: column; 
-    justify-content: flex-start; 
-    align-items: center; 
-    min-height: 100%; 
-    text-align: center;
-    padding: 20px; 
-  }
+  background-image: url('../../../assets/img/sea.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  height: 150vh;
+  overflow-y: auto;
+}
+
+.mask {
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: center; 
+  min-height: 100%; 
+  text-align: center;
+  padding: 20px; 
+}
   form {
     background: white;
-    width: 60%;
-    padding: 20px;
+    width: 101%;
     border-radius: 10px;
   }
+
   .row {
     display: flex;
     justify-content: space-between;
@@ -52,12 +54,15 @@
   }
   .image-container {
     position: relative;
+    display: inline-block;
   }
   
+
   .img_lugar {
-    display: block;
-    max-width: 100%;
+    width: 1296px;
+    height: 800px;
   }
+  
   
   .marker {
     position: absolute;

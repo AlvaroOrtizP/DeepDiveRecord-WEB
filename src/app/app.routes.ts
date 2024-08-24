@@ -5,6 +5,7 @@ import { FormDiveDayComponent } from './features/formdiveday/formdiveday.compone
 import { DiveDayComponent } from './features/dive-day/dive-day.component';
 import { FishFormComponent } from './features/fish-form/fish-form.component';
 import { FishFactsComponent } from './features/fish-facts/fish-facts.component';
+import { DiveDayListComponent } from './features/dive-day-list/dive-day-list.component';
 
 
 
@@ -14,5 +15,6 @@ export const routes: Routes = [
    { path: 'formDiveDay', component: FormDiveDayComponent },
    { path: 'dive-day/:id', component: DiveDayComponent },
    { path: 'fish-form', component: FishFormComponent },
-   { path: 'fish-facts/:id', component: FishFactsComponent }
+   { path: 'fish-facts/:id', component: FishFactsComponent },
+   { path: 'dive-day-list', component: DiveDayListComponent }
 ];

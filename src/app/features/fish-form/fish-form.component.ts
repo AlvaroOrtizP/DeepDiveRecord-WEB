@@ -26,6 +26,8 @@ export class FishFormComponent implements OnInit {
   filteredNames: string[] = [];
   idGeograficLocation: number = 0;
   diveDayId: number = 0;
+  geographyName: string = "";
+  geographySite: string = "";
 
   constructor(
     private fb: FormBuilder, 
@@ -75,21 +77,22 @@ export class FishFormComponent implements OnInit {
   onSubmit() {
     console.log('Formulario valores actuales:', this.form.value);
     if (this.form.valid) {
+      console.log("Antes this.form.value.lat")
       const fishingData = new InCreateFishing(
         this.form.value.fishId,
         this.form.value.caught,
         this.form.value.name,
         this.form.value.site,
-        parseFloat(this.form.value.lat),
-        parseFloat(this.form.value.long),
+        this.form.value.lat,
+        this.form.value.long,
         this.form.value.notes,
         this.form.value.weight,
         this.diveDayId
       );
       console.log(fishingData);
       this.fisingService.createFishing(fishingData).subscribe(
-        (fishingId) => {
-          this.router.navigate(['/dive-day', 2]);
+        (diveDayId) => {
+          this.router.navigate(['/dive-day', diveDayId]);
         },
         (error) => {
           console.error('Error fetching data', error);
@@ -141,6 +144,14 @@ export class FishFormComponent implements OnInit {
       const selectedSite = target.value;
       this.filterNamesBySite(selectedSite);
       this.form.patchValue({ name: '' });
+      this.geographySite = selectedSite;
+    }
+  }
+  onGeograficChange(event: Event) {
+    const target = event.target as HTMLSelectElement;
+    if (target) {
+      const selectedName = target.value;
+      this.geographyName = selectedName;
     }
   }
 
