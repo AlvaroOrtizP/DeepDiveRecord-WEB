@@ -66,7 +66,7 @@
         <div class="image-container" (click)="onMapClick($event)">
           <p>{{ geographySite}}</p>
           <p>{{ geographyName}}</p>
-          <img class="img_lugar" [src]="'../../../assets/img/lugares/'+ geographySite + '/' + geographyName + '.jpg'"
+          <img class="img_lugar" [src]="'http://localhost:8080/api/images/site_'+ geographySite + '-' + geographyName + '.jpg'"
             alt="Map" />
           <!-- Única marca -->
           @if(markerVisible){

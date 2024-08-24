@@ -61,8 +61,13 @@ export class DiveDayListComponent implements OnInit {
   }
 
   onPageChange(page: number) {
-    this.page = page;
-    this.cargaInicial();
+    if(this.page===0 && page==-1) {
+      console.log("No se puede reducir mas")
+    }else{
+      this.page = page;
+      this.cargaInicial();
+    }
+
   }
   onFilterSubmit() {
     this.page = 0; // Reiniciar a la primera página cuando se aplican nuevos filtros

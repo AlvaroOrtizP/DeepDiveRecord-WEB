@@ -25,7 +25,7 @@
                             <h5 class="card-title">Informacion sobre el pez</h5>
                         </div>
                         <div class="card-body">
-                            <p><strong>Identificador del pez:</strong> {{ fishing?.fishid }}</p>
+                            <p><strong>Identificador del pez:</strong> {{ fishing?.fishId }}</p>
                             <p><strong>Nombre:</strong> {{ fishing?.name }}</p>
                             <p><strong>Lugar:</strong> {{ fishing?.site }}</p>
                             <p><strong>Primer avistamiento del año:</strong> {{ fishing?.firstSighting }}</p>
@@ -42,7 +42,9 @@
         <section>
             <h4>{{fishing?.geographieSite + ', ' + zone}}</h4>
             <div class="image-container">
-                <img class="img_lugar" [src]="'../../../assets/img/lugares/' + fishing?.geographieSite + '/' + fishing?.geographieName + '.jpg'"  alt="Marea Baja" />
+                <img class="img_lugar" [src]="'http://localhost:8080/api/images/site_' + fishing?.geographieSite + '_' + fishing?.geographieName + '.jpg'"  alt="Imagen del mapa" />
+                <img class="img_fish_marker" [src]="'http://localhost:8080/api/images/fish_' + fishing?.fishId + '.jpg'" alt="Imagen del Pez" />
+                <!--Controlar mediante un if con las coordenada para mostrar el pez en una esquina u en otra-->
                 <!-- Agregar marcas -->
                  @if(marcasActivas){
                         <div class="marker"  [style.top.%]="fishing?.latG" 

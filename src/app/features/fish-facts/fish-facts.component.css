@@ -44,3 +44,12 @@ h4{
   margin-top: 1px;
   color: white;
 }
+.img_fish_marker {
+  position: absolute;
+  width: 150px;
+  height: 100px;
+  border-radius: 8px;
+  top: 20px; /* Ajusta la posición según sea necesario */
+  left: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}

@@ -212,7 +212,7 @@
             <!--ZONA MAPA-->
             <section>
                 <div class="image-container">
-                    <img class="img_lugar" [src]="'../../../assets/img/lugares/'+ diveDayResponse?.geographicalLocationResponse?.site + '/' + diveDayResponse?.geographicalLocationResponse?.name + '.jpg'"  alt="Marea Baja" />
+                    <img class="img_lugar" [src]="'http://localhost:8080/api/images/site_'+ diveDayResponse?.geographicalLocationResponse?.site + '_' + diveDayResponse?.geographicalLocationResponse?.name + '.jpg'"  alt="Marea Baja" />
                      @if(marcasActivas){
                         @for (fishing of diveDayResponse?.fishingList; track $index) {
                             @if(fishing?.site == diveDayResponse?.geographicalLocationResponse?.site){

@@ -6,7 +6,7 @@ export class FishingResquest {
         public weight: number,
         public latG: number, //Norte - Sur
         public logG: number, //Este - Oeste 
-        public fishid: number,
+        public fishId: number,
         public name: string,
         public site: string,
         public firstSighting: string,

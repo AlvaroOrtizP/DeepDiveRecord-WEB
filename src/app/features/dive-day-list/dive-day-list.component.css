@@ -19,8 +19,11 @@
     padding: 20px;
 }
 
-h2 {
+h2, label {
     font-weight: bold;
+    color: white;
+}
+span {
     color: white;
 }
 

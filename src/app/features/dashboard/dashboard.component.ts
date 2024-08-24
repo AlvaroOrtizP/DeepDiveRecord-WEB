@@ -15,6 +15,7 @@ import { DeepdiveService } from '../../core/services/deepdive.service';
 export class DashboardComponent implements OnInit { // Implementar OnInit para usar ngOnInit
   data!: OutGetDataList;
   dataList: OutGetData[] = [];
+  today: Date= new Date();
 
   constructor(private deepdiveService: DeepdiveService) { }
 
@@ -24,13 +25,12 @@ export class DashboardComponent implements OnInit { // Implementar OnInit para u
   }
 
   cargaInicial() {
-    const today: Date = new Date();
     const nextWeek: Date = new Date();
-    nextWeek.setDate(today.getDate() + 7);
+    nextWeek.setDate(this.today.getDate() + 7);
 
-    const fromYear: string = today.getFullYear().toString();
-    const fromMonth: string = (today.getMonth() + 1).toString().padStart(2, '0'); 
-    const fromDay: string = today.getDate().toString().padStart(2, '0');
+    const fromYear: string = this.today.getFullYear().toString();
+    const fromMonth: string = (this.today.getMonth() + 1).toString().padStart(2, '0'); 
+    const fromDay: string = this.today.getDate().toString().padStart(2, '0');
 
     const toYear: string = nextWeek.getFullYear().toString();
     const toMonth: string = (nextWeek.getMonth() + 1).toString().padStart(2, '0');
@@ -38,7 +38,7 @@ export class DashboardComponent implements OnInit { // Implementar OnInit para u
     
     const inGetDataWeek: InGetDataWeek = {
       page: 0,
-      size: 20,
+      size: 70,
       site: '487006',
       fromYear: fromYear,
       fromMonth: fromMonth,
@@ -47,8 +47,11 @@ export class DashboardComponent implements OnInit { // Implementar OnInit para u
       toMonth: toMonth,
       toDay: toDay
     };
-
+    console.log("fromYear " + fromYear);
+    console.log("fromMonth " + fromMonth);
+    console.log("fromDay " + fromDay);
     this.deepdiveService.getDataWeek(inGetDataWeek).subscribe(
+    
       (response) => {
         this.data = response;
         this.dataList = response.outGetDataList;
@@ -58,5 +61,9 @@ export class DashboardComponent implements OnInit { // Implementar OnInit para u
         console.error('Error fetching data', error);
       }
     );
+  }
+  getDayGroupClass(day: number): string {
+    console.log("prueba")
+    return day % 2 !== 0 ? 'day-group-1' : 'day-group-2';
   }
 }
