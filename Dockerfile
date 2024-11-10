@@ -22,8 +22,8 @@ FROM nginx:1.25-alpine
 # Copiar los archivos compilados al directorio de Nginx
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Exponer el puerto 80
-EXPOSE 80
+# Exponer el puerto 8080 (ya que configuramos el servidor para que escuche en este puerto)
+EXPOSE 8080
 
-# Iniciar Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Configurar Nginx para que sirva la aplicación en el puerto 8080
+CMD ["nginx", "-g", "daemon off;", "-p", "8080"]
