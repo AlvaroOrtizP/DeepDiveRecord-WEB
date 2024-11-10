@@ -9,7 +9,7 @@ export class InCreateDailyDiving {
     public name: string,
     public notes: string,
     public assessment: number,
-    public idGeograficLocation: number,
+    public idGeographicLocation: number,
     public jellyfish: number,
     public visibility: number, 
     public seaBackground: number,
