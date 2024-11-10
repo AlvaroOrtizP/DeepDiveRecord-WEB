@@ -5,7 +5,7 @@ FROM node:20.12.0 AS build
 WORKDIR /app
 
 # Copiar los archivos de configuración
-COPY package.json package-lock.json ./
+COPY package.json package-lock.json 
 
 # Instalar las dependencias
 RUN npm install
