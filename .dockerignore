@@ -1,42 +1,6 @@
-# Ignorar archivos de configuración del entorno de desarrollo
-.env
-.env.local
-.env.*.local
-
-# Ignorar archivos de control de versiones
+node_modules
+dist
 .git
-.gitignore
-
-# Ignorar archivos de configuración de editores de texto/IDE
-.vscode/
-.idea/
-*.sublime-project
-*.sublime-workspace
-
-# Ignorar dependencias de npm que serán instaladas en el contenedor
-node_modules/
-npm-debug.log
-yarn-error.log
-pnpm-debug.log
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
-
-# Ignorar la carpeta de salida del build local
-dist/
-build/
-
-# Ignorar archivos temporales del sistema
+.vscode
+.angular
 .DS_Store
-Thumbs.db
-
-# Ignorar archivos de pruebas
-coverage/
-*.spec.ts
-*.test.ts
-karma.conf.js
-jest.config.js
-
-# Ignorar archivos de caché
-.cache/
-.angular/
