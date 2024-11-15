@@ -20,10 +20,11 @@ RUN npm run build
 FROM nginx:1.25-alpine
 
 # Copiar los archivos compilados al directorio de Nginx
-COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build /app/dist/deep-dive-record-web/browser /usr/share/nginx/html
 
-# Exponer el puerto 8080 (ya que configuramos el servidor para que escuche en este puerto)
-EXPOSE 8080
+# Exponer el puerto 8080
+EXPOSE 80
 
-# Configurar Nginx para que sirva la aplicación en el puerto 8080
-CMD ["nginx", "-g", "daemon off;", "-p", "8080"]
+# Iniciar Nginx
+CMD ["nginx", "-g", "daemon off;"]
+
