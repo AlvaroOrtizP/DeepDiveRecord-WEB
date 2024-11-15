@@ -9,5 +9,6 @@ export class InCreateFishing {
         public notes: string,
         public weight: number,
         public idDiveDay: number,
+        public sightingTime: string,
     ) {}
 }

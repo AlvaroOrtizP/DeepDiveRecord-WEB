@@ -12,7 +12,7 @@
           </select>
         </div>
         <div class="third">
-          <label for="caught">Caught</label>
+          <label for="caught">Capturado?</label>
           <input id="caught" formControlName="caught" type="checkbox">
         </div>
       </div>
@@ -42,23 +42,31 @@
         </div>
 
         <div class="half">
-          <label for="weight">Weight</label>
+          <label for="weight">Peso</label>
           <input id="weight" formControlName="weight" type="number" step="any">
         </div>
       </div>
 
       <div class="row">
         <div class="third">
-          <label for="lat">Latitude</label>
+          <label for="lat">Latitud</label>
           <input id="lat" formControlName="lat" type="number" step="any">
         </div>
         <div class="third">
-          <label for="long">Longitude</label>
+          <label for="long">Longitud</label>
           <input id="long" formControlName="long" type="number" step="any">
         </div>
       </div>
       <br>
 
+      <div class="row">
+        <div class="third">
+          <label for="sighting_time">Hora en la que se vio </label>
+          <input id="sighting_time" placeholder="12:00" formControlName="sighting_time " type="text" step="any">
+        </div>
+
+      </div>
+      <br>
 
       <!-- ZONA MAPA -->
       @if(geographyName!=""){
@@ -66,7 +74,7 @@
         <div class="image-container" (click)="onMapClick($event)">
           <p>{{ geographySite}}</p>
           <p>{{ geographyName}}</p>
-          <img class="img_lugar" [src]="'http://localhost:8080/api/images/site_'+ geographySite + '-' + geographyName + '.jpg'"
+          <img class="img_lugar" [src]="'http://localhost:8080/api/images/site_'+ geographySite + '_' + geographyName + '.jpg'"
             alt="Map" />
           <!-- Única marca -->
           @if(markerVisible){

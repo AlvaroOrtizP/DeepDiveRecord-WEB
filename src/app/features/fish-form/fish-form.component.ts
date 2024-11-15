@@ -87,9 +87,9 @@ export class FishFormComponent implements OnInit {
         this.form.value.long,
         this.form.value.notes,
         this.form.value.weight,
-        this.diveDayId
+        this.diveDayId,
+        this.form.value.sightingTime,
       );
-      console.log(fishingData);
       this.fisingService.createFishing(fishingData).subscribe(
         (diveDayId) => {
           this.router.navigate(['/dive-day', diveDayId]);
@@ -152,6 +152,7 @@ export class FishFormComponent implements OnInit {
     if (target) {
       const selectedName = target.value;
       this.geographyName = selectedName;
+      console.log('selectedName ', selectedName)
     }
   }
 
