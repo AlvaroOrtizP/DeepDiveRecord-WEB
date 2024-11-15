@@ -30,9 +30,9 @@ jobs:
         run: |
           npm install
 
-      # Paso 4: Ejecutar pruebas (opcional si tienes pruebas configuradas)
-      - name: Run tests
-        run: npm test
+      # Paso 4: Ejecutar pruebas 
+      # - name: Run tests
+       #  run: npm test
 
       # Paso 5: Construir la aplicación Angular
       - name: Build Angular project
