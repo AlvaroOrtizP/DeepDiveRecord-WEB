@@ -14,7 +14,7 @@ import { GeograficLocationResponse } from '../../core/models/deepdive/response/G
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './dive-day-list.component.html',
-  styleUrls: ['./dive-day-list.component.css'] // Cambié 'styleUrl' a 'styleUrls'
+  styleUrls: ['./dive-day-list.component.css'] 
 })
 export class DiveDayListComponent implements OnInit {
 
@@ -80,7 +80,7 @@ export class DiveDayListComponent implements OnInit {
   cargaInicial() {
     const formValues = this.form.value;
 
-    this.diveDayService.getFishingDays(this.page, this.itemsPerPage, formValues.zona, formValues.sortBy, formValues.sortDirection)
+    this.diveDayService.getDiveDays(this.page, this.itemsPerPage, formValues.zona, formValues.sortBy, formValues.sortDirection)
       .subscribe((data: Page<DiveDayResponse>) => { 
         this.fishingDays = data.content;
         this.totalPages = data.totalPages;

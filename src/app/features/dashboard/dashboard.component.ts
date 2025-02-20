@@ -9,22 +9,22 @@ import { DeepdiveService } from '../../core/services/deepdive.service';
   selector: 'app-dashboard',
   standalone: true,
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'], // Corregido a 'styleUrls'
-  imports: [NavbarComponent, FooterComponent]
+  styleUrls: ['./dashboard.component.css'], 
+  imports: []
 })
-export class DashboardComponent implements OnInit { // Implementar OnInit para usar ngOnInit
+export class DashboardComponent implements OnInit { 
   data!: OutGetDataList;
   dataList: OutGetData[] = [];
   today: Date= new Date();
-
+  modo: number = 1;
   constructor(private deepdiveService: DeepdiveService) { }
 
   ngOnInit(): void {
-    console.log('El componente se ha iniciado');
     this.cargaInicial();
   }
 
   cargaInicial() {
+
     const nextWeek: Date = new Date();
     nextWeek.setDate(this.today.getDate() + 7);
 
@@ -47,10 +47,7 @@ export class DashboardComponent implements OnInit { // Implementar OnInit para u
       toMonth: toMonth,
       toDay: toDay
     };
-    console.log("fromYear " + fromYear);
-    console.log("fromMonth " + fromMonth);
-    console.log("fromDay " + fromDay);
-    this.deepdiveService.getDataWeek(inGetDataWeek).subscribe(
+    /*this.deepdiveService.getDataWeek(inGetDataWeek).subscribe(
     
       (response) => {
         this.data = response;
@@ -60,10 +57,16 @@ export class DashboardComponent implements OnInit { // Implementar OnInit para u
       (error) => {
         console.error('Error fetching data', error);
       }
-    );
+    );*/
   }
   getDayGroupClass(day: number): string {
-    console.log("prueba")
     return day % 2 !== 0 ? 'day-group-1' : 'day-group-2';
+  }
+  cambiarModo(){
+    if(this.modo == 0){
+      this.modo = 1;
+    }else{
+      this.modo = 0;
+    }
   }
 }

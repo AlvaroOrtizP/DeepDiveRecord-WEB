@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, of, throwError } from 'rxjs';
 import { InCreateDailyDiving } from '../../models/deepdive/request/InCreateDailyDiving';
 import { DiveDayDetailsResponse } from '../../models/deepdive/response/DiveDayDetailsResponse';
 import { Page } from '../../models/deepdive/response/Page';
@@ -27,16 +27,22 @@ export class DivedayService {
   }
   
   // Método para obtener un diveDay por ID
-  cargarDatosDiveDay(id: number): Observable<DiveDayDetailsResponse> {
+  cargarDatosDiveDay(id: number): Observable<DiveDayDetailsResponse | null> {
     const url = `${this.dailyDivingURL}/${id}`;
-    return this.http.get<DiveDayDetailsResponse>(url)
-      .pipe(
-        catchError(this.handleError)
-      );
+    
+    return this.http.get<DiveDayDetailsResponse>(url).pipe(
+      catchError((error) => {
+        if (error.status === 404) {
+          console.error(`DiveDay con ID ${id} no encontrado.`);
+          return of(null); // Devuelve un Observable con null si el ID no existe
+        }
+        return throwError(() => new Error(error.message)); // Relanza otros errores
+      })
+    );
   }
-
+  
   // Método para obtener una lista paginada de días de buceo
-  getFishingDays(page: number = 0, size: number = 10, zona?: string, sortBy: string = 'fecha', sortDirection: string = 'asc'): Observable<Page<DiveDayResponse>> {
+  getDiveDays(page: number = 0, size: number = 10, zona?: string, sortBy: string = 'fecha', sortDirection: string = 'asc'): Observable<Page<DiveDayResponse>> {
     let params = new HttpParams()
       .set('page', page.toString())
       .set('size', size.toString())
