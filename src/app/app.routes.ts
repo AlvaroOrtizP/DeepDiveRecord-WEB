@@ -6,6 +6,7 @@ import { DiveDayComponent } from './features/dive-day/dive-day.component';
 import { FishFormComponent } from './features/fish-form/fish-form.component';
 import { FishFactsComponent } from './features/fish-facts/fish-facts.component';
 import { DiveDayListComponent } from './features/dive-day-list/dive-day-list.component';
+import { FishingEditFormComponent } from './features/fishing-edit-form/fishing-edit-form.component';
 
 
 
@@ -16,5 +17,6 @@ export const routes: Routes = [
    { path: 'dive-day/:id', component: DiveDayComponent },
    { path: 'fish-form', component: FishFormComponent },
    { path: 'fish-facts/:id', component: FishFactsComponent },
-   { path: 'dive-day-list', component: DiveDayListComponent }
+   { path: 'dive-day-list', component: DiveDayListComponent },
+   { path: 'fishing-edit-form/:id/:diveDayId', component: FishingEditFormComponent }
 ];

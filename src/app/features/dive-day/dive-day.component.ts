@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { DiveDayDetailsResponse} from '../../core/models/deepdive/response/DiveDayDetailsResponse';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DivedayService } from '../../core/services/diveday/diveday.service';
+import { FishingService } from '../../core/services/fishing/fishing.service';
+import { InDeleteFishing } from '../../core/models/deepdive/request/InDeleteFishing';
 
 @Component({
   selector: 'app-dive-day',
@@ -23,7 +25,8 @@ export class DiveDayComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private divedayService: DivedayService
+    private divedayService: DivedayService,
+    private fishingService: FishingService
   ) { }
   ngOnInit() {
     this.marcasActivas = true;
@@ -31,29 +34,55 @@ export class DiveDayComponent {
     this.conditionAtardecer = "chubascos"
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id) {
-      this.divedayService.cargarDatosDiveDay(id).subscribe(
-        (response) => {
-          this.diveDayResponse = response;
-          this.zone = this.diveDayResponse.geographicalLocationResponse.name.replaceAll("_", " ");
+      this.divedayService.cargarDatosDiveDay(id).subscribe({
+        next: (response) => {
+          if (response) {
+            this.diveDayResponse = response;
+            this.zone = this.diveDayResponse.geographicalLocationResponse.name.replaceAll("_", " ");
+          } else {
+            this.mostrarError("El día de buceo no fue encontrado.");
+          }
         },
-        (error) => {
-          console.error('Error fetching data', error);
+        error: (error) => {
+          console.error('Error al obtener datos:', error);
+          this.mostrarError("Hubo un problema al cargar los datos.");
         }
-      );
+      });
     }
-
   }
 
+  mostrarError(mensaje: string) {
+    alert(mensaje); // Puedes reemplazarlo con un popup más elegante si usas Material o SweetAlert2
+    this.router.navigate(['/']); // Redirigir al usuario a otra página si el ID no existe
+  }
 
   activarMarcas() {
     this.marcasActivas = !this.marcasActivas;
   }
-  modificarPez() {
-    alert("Modificar")
+  modificarPesca(id: number) {
+    const diveDayId = Number(this.route.snapshot.paramMap.get('id')); // Obtenemos el diveDayId de la URL actual
+    this.router.navigate(['/fishing-edit-form', id, diveDayId]);
   }
-  eliminarPez() {
-    alert("Eliminar")
+  eliminarPez(id: number) {
+    const confirmacion = window.confirm('¿Estás seguro de que deseas eliminar este pez?');
+    if (confirmacion) {
+      const inDelete = new InDeleteFishing();
+      inDelete.fishingId = id;
+  
+      this.fishingService.deleteFishing(inDelete).subscribe({
+        next: (response) => {
+          console.log('Pez eliminado exitosamente, respuesta:', response);
+          // Aquí puedes actualizar la UI, como recargar la lista de peces.
+        },
+        error: (error) => {
+          console.error('Error al eliminar el pez:', error);
+          // Manejo de errores.
+        },
+      });
+    }
   }
+  
+  
   verPez(id: number) {
     this.router.navigate(['/fish-facts', id]);
   }

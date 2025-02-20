@@ -5,8 +5,6 @@ export class InCreateDailyDiving {
     public year: string,
     public beginning: string,
     public end: string,
-    public site: string,
-    public name: string,
     public notes: string,
     public assessment: number,
     public idGeographicLocation: number,

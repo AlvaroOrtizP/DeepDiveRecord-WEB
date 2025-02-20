@@ -77,8 +77,6 @@ export class FormDiveDayComponent implements OnInit {
         year + "",
         beginning,
         end,
-        site,
-        name, 
         notes,
         assessment,
         this.idGeograficLocation,

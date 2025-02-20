@@ -3,6 +3,8 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { InCreateFishing } from '../../models/deepdive/request/InCreateFishing';
 import { FishingResquest } from '../../models/deepdive/response/FishingResquest';
+import { InEditFishing } from '../../models/deepdive/request/InEditFishing ';
+import { InDeleteFishing } from '../../models/deepdive/request/InDeleteFishing';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,7 @@ import { FishingResquest } from '../../models/deepdive/response/FishingResquest'
 export class FishingService {
 
   private fishingURL = 'http://localhost:8080/fishing';
+  private fishingDeleteURL = 'http://localhost:8080/fishing/delete';
 
   constructor(private http: HttpClient) { }
   createFishing(inCreateFishing: InCreateFishing): Observable<number> {
@@ -27,7 +30,26 @@ export class FishingService {
         catchError(this.handleError)
       );
   }
+  editFishing(inEditFishing: InEditFishing): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    console.log("Objeto enviado al servidor:", inEditFishing);
 
+    return this.http.patch<any>(this.fishingURL, inEditFishing, { headers })
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  deleteFishing(inDeleteFishing: InDeleteFishing): Observable<number> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    console.log("Objeto enviado al servidor (deleteFishing):", JSON.stringify(inDeleteFishing));
+  
+    return this.http.post<number>(this.fishingDeleteURL, inDeleteFishing, { headers })
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+  
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMsg: string;

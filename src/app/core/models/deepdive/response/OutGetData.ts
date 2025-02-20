@@ -11,7 +11,7 @@ export interface OutGetData {
     wavePeriod: number;
     waveDirection: number;
     earthTemperature: number;
-    waterTtermperature: string;
+    waterTemperature: string;
     f1: number;
     descripcion1: string;
 

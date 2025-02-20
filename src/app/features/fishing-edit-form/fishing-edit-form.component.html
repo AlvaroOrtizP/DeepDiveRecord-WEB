@@ -1,5 +1,6 @@
 <div class="principal">
   <div class="mask">
+
     <form [formGroup]="form" class="container my-4" (ngSubmit)="onSubmit()">
 
       <div class="row">
@@ -59,31 +60,29 @@
       </div>
       <br>
 
-      <div class="row">
-        <div class="third">
-          <label for="sighting_time">Hora en la que se vio </label>
-          <input id="sighting_time" placeholder="12:00" formControlName="sighting_time" type="text" step="any">
-        </div>
 
-      </div>
       <br>
 
       <!-- ZONA MAPA -->
       @if(geographyName!=""){
+      <!-- ZONA MAPA -->
       <section>
         <div class="image-container" (click)="onMapClick($event)">
-          <p>{{ geographySite}}</p>
-          <p>{{ geographyName}}</p>
-          <img class="img_lugar" [src]="'http://localhost:8080/api/images/site_'+ geographySite + '_' + geographyName + '.jpg'"
-            alt="Map" />
-          <!-- Única marca -->
-          @if(markerVisible){
+          <p>{{ geographySite }}</p>
+          <p>{{ geographyName }}</p>
+          <img class="img_lugar"
+            [src]="'http://localhost:8080/api/images/site_' + geographySite + '_' + geographyName + '.jpg'" alt="Map" />
+
+          <!-- Marca con las coordenadas de lat y long -->
+          @if(markerLat !== undefined && markerLong !== undefined){
           <div [style.top.%]="markerLat" [style.left.%]="markerLong" class="marker" title="Selected location">
             <span>1</span>
           </div>
           }
+
         </div>
       </section>
+
       }
       <br>
       <button type="submit">Submit</button>

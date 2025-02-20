@@ -3,15 +3,16 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  height: 85vh;
- 
+  height: 140vh;
 }
 
 .mask {
   background-color: rgba(0, 0, 0, 0.6);
-  height: 85vh;
-  text-align: center;
+  height: 140vh;
   padding-top: 5%;
+}
+.centrado{
+  text-align: center;
 }
 
 .text-white {
@@ -59,27 +60,106 @@
 
 /* Fija la primera columna */
 .sticky-col {
- position: -webkit-sticky; /* Para navegadores basados en Webkit */
- position: sticky;
- left: 0;
- background-color: rgba(0, 0, 0, 0.7); /* Color de fondo para que no se mezcle con el contenido que se desplaza */
- z-index: 2; /* Asegura que esté por encima de las demás columnas */
+  position: -webkit-sticky; /* Para navegadores basados en Webkit */
+  position: sticky;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2;
 }
 
 /* Asegurar que las imágenes en las columnas fijas no se desplazan */
 .sticky-col .arrow img {
- width: 30px;
- height: auto;
+  width: 30px;
+  height: auto;
 }
-
-
 
 /* Estilos para los días impares */
 .day-group-1 {
-  background-color: rgba(255, 255, 255, 0.1) !important;; /* Color de fondo para días impares */
+  background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 /* Estilos para los días pares */
 .day-group-2 {
-  background-color: rgba(0, 0, 0, 0.2); /* Color de fondo para días pares */
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos mejorados para las cartas */
+.contenedor-cartas{
+  width: 98%;
+  margin: 0 auto;
+}
+
+.carta {
+  background: linear-gradient(135deg, #152726, #0d3940);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  width: 19%;
+  min-width: 220px;
+  color: white;
+  transition: transform 0.3s ease-in-out;
+}
+
+.carta:hover {
+  transform: scale(1.05);
+}
+
+.section-morning, .section-afternoon {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+p {
+  font-size: 0.85rem;
+  margin: 5px 0;
+}
+
+/* Colores alternativos por día */
+.carta:nth-child(odd) {
+  background: linear-gradient(135deg, #321f12, #162828);
+}
+
+.carta:nth-child(even) {
+  background: linear-gradient(135deg, #14272b, #0d3940);
+}
+
+/* Animación para cartas destacadas (días buenos) */
+.carta.destacada {
+  border: 3px solid transparent;
+  animation: resplandor 1.5s infinite alternate;
+}
+
+@keyframes resplandor {
+  0% {
+    border-color: rgba(255, 215, 0, 0.5);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  }
+  100% {
+    border-color: rgba(255, 215, 0, 1);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 1);
+  }
+}
+
+/* Animación para cartas negativas (días malos) */
+.carta.malo {
+  border: 3px solid transparent;
+  animation: parpadeo 1s infinite alternate;
+}
+
+@keyframes parpadeo {
+  0% {
+    border-color: rgba(255, 0, 0, 0.5);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+  }
+  100% {
+    border-color: rgba(255, 0, 0, 1);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 1);
+  }
 }
