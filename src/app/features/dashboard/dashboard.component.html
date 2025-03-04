@@ -85,188 +85,51 @@
         @else {
         <div class="contenedor-cartas">
           <div class="row justify-content-between">
-            <div class="col-auto carta destacada" style="background-color: cornflowerblue">
-              <!-- Sección Mañana -->
-              <div class="row section-morning">
-                <h3 class="centrado">Mañana 08:15</h3>
-                <div class="col-md text-start">
-                  <p><strong>💨 V. Viento:</strong> 12 - 16</p>
-                  <p><strong>💨 R. Viento:</strong> 17 - 20</p>
-                  <p><strong>🌊 A. Olas:</strong> 1.9 - 1.2</p>
-                  <p><strong>🌊 Fondo:</strong> 15 - 10</p>
-                </div>
-                <div class="col-md text-start">
-                  <p><strong>🧭 Viento:</strong> Norte</p>
-                  <p><strong>🌊 Olas:</strong> Este</p>
-                  <p><strong>🌡️ Tierra:</strong> 20°C - 20°C</p>
-                  <p><strong>🌡️ Mar:</strong> 18°C - 20°C</p>
-                </div>
+            @for (pair of dataMediaListGrouped; track pair.morning.id) {
+              <div class="col-auto carta {{ pair.morning.category }}" style="background-color: cornflowerblue">
+                <h3>{{pair.morning.year}} - {{pair.morning.month}} - {{pair.morning.day}}</h3>
+                <!-- Sección Mañana -->
+                @if (pair.morning) {
+                  <div class="row section-morning">
+                    <h3 class="centrado">Mañana 08:15</h3>
+                    <div class="col-md text-start">
+                      <p><strong>💨 V. Viento:</strong> {{ pair.morning.minWinter }} - {{ pair.morning.maxWinter }}</p>
+                      <p><strong>💨 R. Viento:</strong> {{ pair.morning.minGustsOfWind }} - {{ pair.morning.maxGustsOfWind }}</p>
+                      <p><strong>🌊 A. Olas:</strong> {{ pair.morning.minWaveHeight }} - {{ pair.morning.maxWaveHeight }}</p>
+                      <p><strong>🌊 Fondo:</strong> {{ pair.morning.minWavePeriod }} - {{ pair.morning.maxWavePeriod }}</p>
+                    </div>
+                    <div class="col-md text-start">
+                      <p><strong>🧭 Viento:</strong> {{ pair.morning.windDirection }}</p>
+                      <p><strong>🌊 Olas:</strong> {{ pair.morning.waveDirection }}</p>
+                      <p><strong>🌡️ Tierra:</strong> {{ pair.morning.minEarthTemperature }} - {{ pair.morning.maxEarthTemperature }}</p>
+                      <p><strong>🌡️ Mar:</strong> {{ pair.morning.minWaterTemperature }} - {{ pair.morning.maxWaterTemperature }}</p>
+                    </div>
+                  </div>
+                }
+            
+                <!-- Sección Tarde -->
+                @if (pair.afternoon) {
+                  <div class="row section-afternoon">
+                    <h3>Tarde 17:45</h3>
+                    <div class="col-md text-start">
+                      <p><strong>💨 V. Viento:</strong> {{ pair.morning.minWinter }} - {{ pair.morning.maxWinter }}</p>
+                      <p><strong>💨 R. Viento:</strong> {{ pair.morning.minGustsOfWind }} - {{ pair.morning.maxGustsOfWind }}</p>
+                      <p><strong>🌊 A. Olas:</strong> {{ pair.morning.minWaveHeight }} - {{ pair.morning.maxWaveHeight }}</p>
+                      <p><strong>🌊 Fondo:</strong> {{ pair.morning.minWavePeriod }} - {{ pair.morning.maxWavePeriod }}</p>
+                    </div>
+                    <div class="col-md text-start">
+                      <p><strong>🧭 Viento:</strong> {{ pair.morning.windDirection }}</p>
+                      <p><strong>🌊 Olas:</strong> {{ pair.morning.waveDirection }}</p>
+                      <p><strong>🌡️ Tierra:</strong> {{ pair.morning.minEarthTemperature }} - {{ pair.morning.maxEarthTemperature }}</p>
+                      <p><strong>🌡️ Mar:</strong> {{ pair.morning.minWaterTemperature }} - {{ pair.morning.maxWaterTemperature }}</p>
+                    </div>
+                  </div>
+                }
               </div>
-
-              <!-- Sección Tarde -->
-              <div class="row section-afternoon">
-                <h3>Tarde 17:45</h3>
-                <div class="col-md text-start">
-                  <p><strong>💨 V. Viento:</strong> 12</p>
-                  <p><strong>💨 R. Viento:</strong> 17</p>
-                  <p><strong>🌊 A. Olas:</strong> 1.9</p>
-                  <p><strong>🌊 Fondo:</strong> 15</p>
-                </div>
-                <div class="col-md text-start">
-                  <p><strong>🧭 Viento:</strong> Norte</p>
-                  <p><strong>🌊 Olas:</strong> Este</p>
-                  <p><strong>🌡️ Tierra:</strong> 20°C - 20°C</p>
-                  <p><strong>🌡️ Mar:</strong> 18°C - 18°C</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-auto carta malo" style="background-color: antiquewhite;">
-              <!-- Sección Mañana -->
-              <div class="row section-morning">
-                <h3>Mañana 08:15</h3>
-                <div class="col-md text-start">
-                  <p><strong>💨 V. Viento:</strong> 12 - 16</p>
-                  <p><strong>💨 R. Viento:</strong> 17 - 20</p>
-                  <p><strong>🌊 A. Olas:</strong> 1.9 - 1.2</p>
-                  <p><strong>🌊 Fondo:</strong> 15 - 10</p>
-                </div>
-                <div class="col-md text-start">
-                  <p><strong>🧭 Viento:</strong> Norte</p>
-                  <p><strong>🌊 Olas:</strong> Este</p>
-                  <p><strong>🌡️ Tierra:</strong> 20°C - 20°C</p>
-                  <p><strong>🌡️ Mar:</strong> 18°C - 20°C</p>
-                </div>
-              </div>
-
-              <!-- Sección Tarde -->
-              <div class="row section-afternoon">
-                <h3>Tarde 17:45</h3>
-                <div class="col-md text-start">
-                  <p><strong>💨 V. Viento:</strong> 12</p>
-                  <p><strong>💨 R. Viento:</strong> 17</p>
-                  <p><strong>🌊 A. Olas:</strong> 1.9</p>
-                  <p><strong>🌊 Fondo:</strong> 15</p>
-                </div>
-                <div class="col-md text-start">
-                  <p><strong>🧭 Viento:</strong> Norte</p>
-                  <p><strong>🌊 Olas:</strong> Este</p>
-                  <p><strong>🌡️ Tierra:</strong> 20°C - 20°C</p>
-                  <p><strong>🌡️ Mar:</strong> 18°C - 18°C</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-auto  carta" style="background-color: cornflowerblue;">
-              <!-- Sección Mañana -->
-              <div class="row section-morning">
-                <h3>Mañana 08:15</h3>
-                <div class="col-md text-start">
-                  <p><strong>💨 V. Viento:</strong> 12 - 16</p>
-                  <p><strong>💨 R. Viento:</strong> 17 - 20</p>
-                  <p><strong>🌊 A. Olas:</strong> 1.9 - 1.2</p>
-                  <p><strong>🌊 Fondo:</strong> 15 - 10</p>
-                </div>
-                <div class="col-md text-start">
-                  <p><strong>🧭 Viento:</strong> Norte</p>
-                  <p><strong>🌊 Olas:</strong> Este</p>
-                  <p><strong>🌡️ Tierra:</strong> 20°C - 20°C</p>
-                  <p><strong>🌡️ Mar:</strong> 18°C - 20°C</p>
-                </div>
-              </div>
-
-              <!-- Sección Tarde -->
-              <div class="row section-afternoon">
-                <h3>Tarde 17:45</h3>
-                <div class="col-md text-start">
-                  <p><strong>💨 V. Viento:</strong> 12</p>
-                  <p><strong>💨 R. Viento:</strong> 17</p>
-                  <p><strong>🌊 A. Olas:</strong> 1.9</p>
-                  <p><strong>🌊 Fondo:</strong> 15</p>
-                </div>
-                <div class="col-md text-start">
-                  <p><strong>🧭 Viento:</strong> Norte</p>
-                  <p><strong>🌊 Olas:</strong> Este</p>
-                  <p><strong>🌡️ Tierra:</strong> 20°C - 20°C</p>
-                  <p><strong>🌡️ Mar:</strong> 18°C - 18°C</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-auto  carta" style="background-color: green;">
-              <!-- Sección Mañana -->
-              <div class="row section-morning">
-                <h3>Mañana 08:15</h3>
-                <div class="col-md text-start">
-                  <p><strong>💨 V. Viento:</strong> 12 - 16</p>
-                  <p><strong>💨 R. Viento:</strong> 17 - 20</p>
-                  <p><strong>🌊 A. Olas:</strong> 1.9 - 1.2</p>
-                  <p><strong>🌊 Fondo:</strong> 15 - 10</p>
-                </div>
-                <div class="col-md text-start">
-                  <p><strong>🧭 Viento:</strong> Norte</p>
-                  <p><strong>🌊 Olas:</strong> Este</p>
-                  <p><strong>🌡️ Tierra:</strong> 20°C - 20°C</p>
-                  <p><strong>🌡️ Mar:</strong> 18°C - 20°C</p>
-                </div>
-              </div>
-
-              <!-- Sección Tarde -->
-              <div class="row section-afternoon">
-                <h3>Tarde 17:45</h3>
-                <div class="col-md text-start">
-                  <p><strong>💨 V. Viento:</strong> 12</p>
-                  <p><strong>💨 R. Viento:</strong> 17</p>
-                  <p><strong>🌊 A. Olas:</strong> 1.9</p>
-                  <p><strong>🌊 Fondo:</strong> 15</p>
-                </div>
-                <div class="col-md text-start">
-                  <p><strong>🧭 Viento:</strong> Norte</p>
-                  <p><strong>🌊 Olas:</strong> Este</p>
-                  <p><strong>🌡️ Tierra:</strong> 20°C - 20°C</p>
-                  <p><strong>🌡️ Mar:</strong> 18°C - 18°C</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-auto  carta" style="background-color: orange;">
-              <!-- Sección Mañana -->
-              <div class="row section-morning">
-                <h3>Mañana 08:15</h3>
-                <div class="col-md text-start">
-                  <p><strong>💨 V. Viento:</strong> 12 - 16</p>
-                  <p><strong>💨 R. Viento:</strong> 17 - 20</p>
-                  <p><strong>🌊 A. Olas:</strong> 1.9 - 1.2</p>
-                  <p><strong>🌊 Fondo:</strong> 15 - 10</p>
-                </div>
-                <div class="col-md text-start">
-                  <p><strong>🧭 Viento:</strong> Norte</p>
-                  <p><strong>🌊 Olas:</strong> Este</p>
-                  <p><strong>🌡️ Tierra:</strong> 20°C - 20°C</p>
-                  <p><strong>🌡️ Mar:</strong> 18°C - 20°C</p>
-                </div>
-              </div>
-
-              <!-- Sección Tarde -->
-              <div class="row section-afternoon">
-                <h3>Tarde 17:45</h3>
-                <div class="col-md text-start">
-                  <p><strong>💨 V. Viento:</strong> 12</p>
-                  <p><strong>💨 R. Viento:</strong> 17</p>
-                  <p><strong>🌊 A. Olas:</strong> 1.9</p>
-                  <p><strong>🌊 Fondo:</strong> 15</p>
-                </div>
-                <div class="col-md text-start">
-                  <p><strong>🧭 Viento:</strong> Norte</p>
-                  <p><strong>🌊 Olas:</strong> Este</p>
-                  <p><strong>🌡️ Tierra:</strong> 20°C - 20°C</p>
-                  <p><strong>🌡️ Mar:</strong> 18°C - 18°C</p>
-                </div>
-              </div>
-            </div>
+            }
           </div>
         </div>
         }
-
-
-
       </div>
     </div>
   </div>

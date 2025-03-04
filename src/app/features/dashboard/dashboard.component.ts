@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from "../../shared/components/navbar/navbar.component";
 import { FooterComponent } from "../../shared/components/footer/footer.component";
 import { InGetDataWeek } from '../../core/models/deepdive/request/InGetDataWeek';
-import { OutGetData, OutGetDataList } from '../../core/models/deepdive/response/OutGetData';
+import { OutGetData, OutGetDataList, OutGetDataMedia } from '../../core/models/deepdive/response/OutGetData';
 import { DeepdiveService } from '../../core/services/deepdive.service';
 
 @Component({
@@ -15,12 +15,16 @@ import { DeepdiveService } from '../../core/services/deepdive.service';
 export class DashboardComponent implements OnInit { 
   data!: OutGetDataList;
   dataList: OutGetData[] = [];
+  dataMediaList: OutGetDataMedia[] = [];
+
   today: Date= new Date();
   modo: number = 1;
+  dataMediaListGrouped: any[] | undefined;
   constructor(private deepdiveService: DeepdiveService) { }
 
   ngOnInit(): void {
     this.cargaInicial();
+    
   }
 
   cargaInicial() {
@@ -47,17 +51,31 @@ export class DashboardComponent implements OnInit {
       toMonth: toMonth,
       toDay: toDay
     };
-    /*this.deepdiveService.getDataWeek(inGetDataWeek).subscribe(
-    
+    console.log(inGetDataWeek);
+    this.deepdiveService.getDataWeek(inGetDataWeek).subscribe(
+        
       (response) => {
         this.data = response;
         this.dataList = response.outGetDataList;
-        console.log(this.data);
+        this.dataMediaList = response.outGetDataMediaList;
+        this.dataMediaListGrouped = this.groupDataInPairs(this.dataMediaList, 5);
+
+        console.log(this.dataMediaList);
       },
       (error) => {
         console.error('Error fetching data', error);
       }
-    );*/
+    );
+  }
+  groupDataInPairs(data: any[], maxPairs: number): any[] {
+    const grouped = [];
+    for (let i = 0; i < data.length && grouped.length < maxPairs; i += 2) {
+      grouped.push({
+        morning: data[i], 
+        afternoon: data[i + 1] ?? null // Manejo de caso impar
+      });
+    }
+    return grouped;
   }
   getDayGroupClass(day: number): string {
     return day % 2 !== 0 ? 'day-group-1' : 'day-group-2';
