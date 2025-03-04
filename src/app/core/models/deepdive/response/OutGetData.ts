@@ -16,6 +16,32 @@ export interface OutGetData {
     descripcion1: string;
 
   }
+  export interface OutGetDataMedia {
+    month: number;
+    day: number;
+    dayOfYear: number;
+    year: number;
+    site: string;
+    timeOfDay: number;
+    minWinter: number;
+    maxWinter: number;
+    windDirection: number; 
+    minGustsOfWind: number; 
+    maxGustsOfWind: number;
+    minWaveHeight: number;
+    maxWaveHeight: number;
+    minWavePeriod: number;
+    maxWavePeriod: number;
+    waveDirection: number;
+    minEarthTemperature: number;
+    maxEarthTemperature: number;
+    minWaterTemperature: number;
+    maxWaterTemperature: string;
+    category: string;
+    f: number;
+    descripcion: string;
+
+  }
   
   export interface Pagination {
     totalItems: number;
@@ -25,5 +51,6 @@ export interface OutGetData {
   
   export interface OutGetDataList {
     outGetDataList: OutGetData[];
+    outGetDataMediaList: OutGetDataMedia[];
     pagination: Pagination;
   }
