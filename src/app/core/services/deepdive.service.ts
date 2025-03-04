@@ -11,7 +11,9 @@ import { InGetDataWeek } from '../models/deepdive/request/InGetDataWeek';
 })
 export class DeepdiveService {
 
-  private getDataWeekUrl = 'http://localhost:8080/windwu/getDataWeek';
+  //private getDataWeekUrl = 'http://localhost:8080/windwu/getDataWeek';
+  private getDataWeekUrl = 'http://api:8080/windwu/getDataWeek';
+
 
   constructor(private http: HttpClient) { }
   
