@@ -66,7 +66,7 @@ export class WindCondition {
         public waveDirection: string,
         public waveDirectionNM: string,
         public earthTemperature: number,
-        public waterTermperature: string,
+        public waterTemperature: string,
         public conditionCode: number,
         public conditionDescription: string,
     ) {}

@@ -45,7 +45,8 @@ export class FishFormComponent implements OnInit {
       lat: ['', Validators.required],
       long: ['', Validators.required],
       notes: [''],
-      weight: ['', Validators.required]
+      weight: ['', Validators.required],
+      sightingTime : ['', Validators.required]
     });
   }
 
